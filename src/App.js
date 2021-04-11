@@ -11,8 +11,7 @@ import { useStateValue } from "./StateProvider";
 //routing
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme } from "@material-ui/core";
-
+import { Button, createMuiTheme } from "@material-ui/core";
 
 /* ========== setting up theme =========== */
 export const colorTheme = createMuiTheme({
@@ -27,7 +26,7 @@ export const colorTheme = createMuiTheme({
 });
 
 function App() {
-  const [navbar, setNavbar] = useState(1);
+  const [navbar, setNavbar] = useState(2);
 
   return (
     <ThemeProvider theme={colorTheme}>
@@ -44,14 +43,39 @@ function App() {
           {/* navbar ends here.. */}
           <Switch>
             <Route path="/some-path">
-            <div>
-              default
-            </div>
+              <div>default</div>
             </Route>
             <Route path="/">
-              <div>
-                navbar two
-              </div>
+              <div>navbar two</div>
+
+              <h3>Choose the type of Navbar</h3>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => {
+                  setNavbar(1);
+                }}
+              >
+                1
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => {
+                  setNavbar(2);
+                }}
+              >
+                2
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => {
+                  setNavbar(3);
+                }}
+              >
+                3
+              </Button>
             </Route>
           </Switch>
         </div>
