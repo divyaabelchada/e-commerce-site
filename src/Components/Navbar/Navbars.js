@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./css/Navbar.css";
 /* import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.less"; */
 
@@ -16,6 +16,7 @@ import {
   ShoppingCart,
   Translate,
   Search,
+  AvTimerSharp,
 } from "@material-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 
@@ -27,15 +28,24 @@ import Avatar from "@material-ui/core/Avatar";
 import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
+import {
+  SearchboxFive,
+  SearchBoxOne,
+  SearchBoxThree,
+  SearchBoxTwo,
+} from "./SearchBoxes";
 
 export function NavbarOne() {
   return (
     <div>
-      <div id="navbar">
+      <div id="navbar" style={{ backgroundColor: "#fafafa" }}>
         <Container>
           <Grid container alignItems="center">
-            <Grid item md={6} style={{ textAlign: "left" }}>
+            <Grid item md={2} style={{ textAlign: "left" }}>
               <h2>App Studio</h2>
+            </Grid>
+            <Grid item xs={4}>
+              <SearchBoxThree />
             </Grid>
             <Grid item md={6}>
               <Grid container justify="flex-end" spacing={2}>
@@ -75,7 +85,7 @@ export function NavbarOne() {
 
 export function NavbarTwo() {
   return (
-    <div>
+    <div style={{ backgroundColor: "#fafafa" }}>
       <Grid
         style={{ padding: "0 2rem" }}
         container
@@ -87,22 +97,7 @@ export function NavbarTwo() {
           <h2>App Studio</h2>
         </Grid>
         <Grid item md={4}>
-          <TextField
-            placeholder="What are you looking for today?"
-            id="search"
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  {" "}
-                  <IconButton>
-                    <Search />{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            variant="outlined"
-          />
+          <SearchBoxTwo />
         </Grid>
 
         <Grid item md={6}>
@@ -160,5 +155,43 @@ export function NavbarTwo() {
   );
 }
 export function NavbarThree() {
-  return <div>Navbar three</div>;
+  return (
+    <div>
+      <Grid
+        style={{ padding: "0 2rem" }}
+        container
+        alignItems="center"
+        spacing={1}
+        justify="space-around"
+      >
+        <Grid item md={2} style={{ textAlign: "left" }}>
+          <h2>App Studio</h2>
+        </Grid>
+        <Grid item xs={4}></Grid>
+        <Grid item md={3}>
+          <SearchBoxOne />
+        </Grid>
+
+        <Grid item md={2}>
+          <Grid container alignItems="center" spacing={1} justify="flex-end">
+            <Grid item>
+              <IconButton>
+                <ShoppingCart />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton>
+                <Notifications />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <Avatar>
+                <Person />
+              </Avatar>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }

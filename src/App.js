@@ -1,10 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import {
-  NavbarOne,
-  NavbarThree,
-  NavbarTwo,
-} from "./Components/Navbars/Navbars";
+import { NavbarOne, NavbarThree, NavbarTwo } from "./Components/Navbar/Navbars";
 
 //redux
 import { useStateValue } from "./StateProvider";
@@ -12,6 +8,7 @@ import { useStateValue } from "./StateProvider";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { Button, createMuiTheme } from "@material-ui/core";
+import Footer from "./Components/Footer/Footer";
 
 /* ========== setting up theme =========== */
 export const colorTheme = createMuiTheme({
@@ -20,10 +17,12 @@ export const colorTheme = createMuiTheme({
       main: "#ff0077",
     },
     secondary: {
-      main: "#567ff8",
+      main: "#a2a2a2",
     },
   },
 });
+
+export const SearchBox = 1;
 
 function App() {
   const [navbar, setNavbar] = useState(2);
@@ -79,6 +78,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </Router>
     </ThemeProvider>
   );
