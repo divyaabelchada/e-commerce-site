@@ -3,7 +3,7 @@ import "./css/Navbar.css";
 /* import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.less"; */
 
-import { Container, Grid, IconButton } from "@material-ui/core";
+import { Container, Grid, IconButton, makeStyles } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 
@@ -34,6 +34,9 @@ import {
   SearchBoxThree,
   SearchBoxTwo,
 } from "./SearchBoxes";
+import Drawer from "./Drawer";
+import { colorTheme, showDrawer } from "../../App";
+import { grey } from "@material-ui/core/colors";
 
 export function NavbarOne() {
   return (
@@ -41,10 +44,20 @@ export function NavbarOne() {
       <div id="navbar" style={{ backgroundColor: "#fafafa" }}>
         <Container>
           <Grid container alignItems="center">
+            {showDrawer ? (
+              <Grid item xs={1}>
+                <Drawer />
+              </Grid>
+            ) : (
+              <></>
+            )}
+
             <Grid item md={2} style={{ textAlign: "left" }}>
-              <h2>App Studio</h2>
+              <Link to="/" className="links">
+                <h2>App Studio</h2>
+              </Link>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={showDrawer ? 3 : 4}>
               <SearchBoxThree />
             </Grid>
             <Grid item md={6}>
@@ -83,7 +96,20 @@ export function NavbarOne() {
   );
 }
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  avatar: {
+    backgrounColor: grey[100],
+  },
+}));
+
 export function NavbarTwo() {
+  const classes = useStyles();
   return (
     <div style={{ backgroundColor: "#fafafa" }}>
       <Grid
@@ -93,18 +119,28 @@ export function NavbarTwo() {
         spacing={1}
         justify="center"
       >
+        {showDrawer ? (
+          <Grid item xs={1}>
+            <Drawer />
+          </Grid>
+        ) : (
+          <></>
+        )}
         <Grid item md={2} style={{ textAlign: "left" }}>
-          <h2>App Studio</h2>
+          <Link to="/" className="links">
+            <h2>App Studio</h2>
+          </Link>
         </Grid>
         <Grid item md={4}>
           <SearchBoxTwo />
+          {/* <SearchboxFive /> */}
         </Grid>
 
-        <Grid item md={6}>
+        <Grid item md={showDrawer ? 5 : 6}>
           <Grid container justify="flex-end" spacing={2}>
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <Grid container alignItems="center" spacing={1}>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                   <img
                     src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png"
                     style={{
@@ -114,9 +150,9 @@ export function NavbarTwo() {
                     }}
                   />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={9}>
                   <p style={{ margin: 0 }}>
-                    <small>Location</small>
+                    <small style={{ margin: 0 }}>Location</small>
                     <br />
                     Mumbai, India
                   </p>
@@ -124,28 +160,53 @@ export function NavbarTwo() {
               </Grid>
             </Grid>
             <Grid item>
-              <Avatar>
-                <ShoppingCart />
+              <Avatar
+                style={{
+                  backgroundColor: "#fff",
+                  boxShadow: "0px 0px 5px #b0bec5",
+                }}
+              >
+                <ShoppingCart color="secondary" />
               </Avatar>
             </Grid>
             <Grid item>
-              <Avatar>
-                <Favorite />
+              <Avatar
+                style={{
+                  backgroundColor: "#fff",
+                  boxShadow: "0px 0px 5px #b0bec5",
+                }}
+              >
+                <Favorite color="secondary" />
               </Avatar>
             </Grid>
             <Grid item>
-              <Avatar>
-                <Notifications />
+              <Avatar
+                style={{
+                  backgroundColor: "#fff",
+                  boxShadow: "0px 0px 5px #b0bec5",
+                }}
+              >
+                <Notifications color="secondary" />
               </Avatar>
             </Grid>
             <Grid item>
-              <Avatar>
-                <Person />
+              <Avatar
+                style={{
+                  backgroundColor: "#fff",
+                  boxShadow: "0px 0px 5px #b0bec5",
+                }}
+              >
+                <Person color="secondary" />
               </Avatar>
             </Grid>
             <Grid item>
-              <Avatar>
-                <Translate />
+              <Avatar
+                style={{
+                  backgroundColor: "#fff",
+                  boxShadow: "0px 0px 5px #b0bec5",
+                }}
+              >
+                <Translate color="secondary" />
               </Avatar>
             </Grid>
           </Grid>
@@ -164,10 +225,15 @@ export function NavbarThree() {
         spacing={1}
         justify="space-around"
       >
-        <Grid item md={2} style={{ textAlign: "left" }}>
-          <h2>App Studio</h2>
+        <Grid item xs={1}>
+          <Drawer />
         </Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item md={2} style={{ textAlign: "left" }}>
+          <Link to="/" className="links">
+            <h2>App Studio</h2>
+          </Link>
+        </Grid>
+        <Grid item xs={3}></Grid>
         <Grid item md={3}>
           <SearchBoxOne />
         </Grid>

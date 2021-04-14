@@ -117,12 +117,12 @@ export function SearchBoxThree() {
         >
           <SearchIcon />
         </IconButton>
-        {searchValue != "" ? (
+        {searchValue !== "" ? (
           <Divider className={classes.divider} orientation="vertical" />
         ) : (
           <></>
         )}
-        {searchValue != "" ? (
+        {searchValue !== "" ? (
           <IconButton
             color="primary"
             className={classes.iconButton}
@@ -163,12 +163,12 @@ export function SearchBoxFour() {
         >
           <SearchIcon />
         </IconButton>
-        {searchValue != "" ? (
+        {searchValue !== "" ? (
           <Divider className={classes.divider} orientation="vertical" />
         ) : (
           <></>
         )}
-        {searchValue != "" ? (
+        {searchValue !== "" ? (
           <IconButton
             color="primary"
             className={classes.iconButton}
@@ -185,3 +185,9 @@ export function SearchBoxFour() {
 }
 
 //search box five
+
+export function SearchboxFive() {
+  const [searchValue, setSearchValue] = useState("");
+
+  return <div id="search-five"></div>;
+}
