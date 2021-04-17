@@ -7,6 +7,7 @@ import {
   Grid,
   IconButton,
   Paper,
+  Typography,
 } from "@material-ui/core";
 
 import "./css/ProductCard.css";
@@ -18,18 +19,29 @@ import {
 } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 
+//redux
+import { useStateValue } from "../../StateProvider";
+import { actionTypes } from "../../reducer";
+
 export function ProductCardone(props) {
+  const [{ user, notifs }, dispatch] = useStateValue();
+  const addToCart = () => {
+    dispatch({
+      type: actionTypes.SET_NOTIFS,
+      notifs: { value: true, error: false, msg: "Product added to cart" },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: actionTypes.SET_NOTIFS,
+        notifs: { value: false, error: false, msg: "Product added to cart" },
+      });
+    }, 2000);
+  };
+
   return (
     <div>
       <Paper id="product-card-one">
-        <Favorite
-          style={{
-            position: "absolute",
-            top: "0.5rem",
-            right: "0.5rem",
-            color: "red",
-          }}
-        />
+        <Favorite id="heart-icon" />
         <Grid container alignItems="flex-start" justify="center">
           <Grid item xs={12}>
             <div id="image-div">
@@ -38,14 +50,20 @@ export function ProductCardone(props) {
             {/*  <Skeleton variant="rect" height={250} width={"100%"} /> */}
           </Grid>
           <Grid item xs={12} style={{ height: 70 }}>
-            <p>
+            {/*  <p>
               {" "}
               <b> {props.productName} </b>
-            </p>
+            </p> */}
+            <Typography> {props.productName}</Typography>
           </Grid>
 
           <Grid item xs={6}>
-            <Button fullWidth color="secondary" variant="outlined">
+            <Button
+              fullWidth
+              color="secondary"
+              variant="outlined"
+              onClick={addToCart}
+            >
               Add to cart
             </Button>
           </Grid>
@@ -68,18 +86,25 @@ export function ProductCardone(props) {
 }
 
 export function ProductCardTwo(props) {
+  const [{ user, notifs }, dispatch] = useStateValue();
+
+  const addToCart = () => {
+    dispatch({
+      type: actionTypes.SET_NOTIFS,
+      notifs: { value: true, error: false, msg: "Product added to cart" },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: actionTypes.SET_NOTIFS,
+        notifs: { value: false, error: false, msg: "Product added to cart" },
+      });
+    }, 2000);
+  };
   return (
     <div>
       {" "}
       <Card elevation={0} id="product-card-two">
-        <Favorite
-          style={{
-            position: "absolute",
-            top: "0.5rem",
-            right: "0.5rem",
-            color: "red",
-          }}
-        />
+        <Favorite id="heart-icon" />
         <Grid container alignItems="flex-start" justify="center">
           <Grid item xs={12}>
             <div id="image-div">
@@ -88,14 +113,20 @@ export function ProductCardTwo(props) {
             {/*  <Skeleton variant="rect" height={250} width={"100%"} /> */}
           </Grid>
           <Grid item xs={12} style={{ height: 70 }}>
-            <p>
+            {/* <p>
               {" "}
               <b> {props.productName} </b>
-            </p>
+            </p> */}
+            <Typography> {props.productName}</Typography>
           </Grid>
 
           <Grid item xs={6}>
-            <Button fullWidth color="secondary" variant="outlined">
+            <Button
+              fullWidth
+              color="secondary"
+              variant="outlined"
+              onClick={addToCart}
+            >
               Add to cart
             </Button>
           </Grid>
@@ -117,17 +148,24 @@ export function ProductCardTwo(props) {
   );
 }
 export function ProductCardThree(props) {
+  const [{ user, notifs }, dispatch] = useStateValue();
+
+  const addToCart = () => {
+    dispatch({
+      type: actionTypes.SET_NOTIFS,
+      notifs: { value: true, error: false, msg: "Product added to cart" },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: actionTypes.SET_NOTIFS,
+        notifs: { value: false, error: false, msg: "Product added to cart" },
+      });
+    }, 2000);
+  };
   return (
     <div>
       <Card elevation={0} id="product-card-three">
-        <Favorite
-          style={{
-            position: "absolute",
-            top: "0.5rem",
-            right: "0.5rem",
-            color: "red",
-          }}
-        />
+        <Favorite id="heart-icon" />
         <Grid container alignItems="center" justify="center" spacing={2}>
           <Grid item xs={4}>
             <div id="image-div">
@@ -142,15 +180,22 @@ export function ProductCardThree(props) {
               color="primary"
               size="small"
             />
-
+            {/* 
             <p>
               {" "}
               <b> {props.productName} </b>
-            </p>
+            </p> */}
+            <Typography> {props.productName}</Typography>
+
             <p style={{ minHeight: 50 }}> {props.description} </p>
             <Grid container>
               <Grid item xs={6}>
-                <Button fullWidth color="secondary" variant="outlined">
+                <Button
+                  fullWidth
+                  color="secondary"
+                  variant="outlined"
+                  onClick={addToCart}
+                >
                   Add to cart
                 </Button>
               </Grid>

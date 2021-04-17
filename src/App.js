@@ -4,10 +4,17 @@ import { NavbarOne, NavbarThree, NavbarTwo } from "./Components/Navbar/Navbars";
 
 //redux
 import { useStateValue } from "./StateProvider";
+import { actionTypes } from "./reducer";
 //routing
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
-import { Button, Container, createMuiTheme, Grid } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  createMuiTheme,
+  Grid,
+  Snackbar,
+} from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Footer from "./Components/Footer/Footer";
 
@@ -21,6 +28,7 @@ import {
 
 import optionsWomen from "./assets/optionsWomen.png";
 import optionsMen from "./assets/optionsMen.png";
+import ImageUpload from "./Components/AdminSection/ImageUpload";
 
 /* ========== setting up theme =========== */
 export const colorTheme = createMuiTheme({
@@ -31,6 +39,23 @@ export const colorTheme = createMuiTheme({
     secondary: {
       main: "#f678aa",
     },
+    neutral: {
+      main: "#03D061",
+    },
+  },
+  typography: {
+    /* subtitle1: {
+      fontSize: 12,
+    }, */
+    body1: {
+      fontWeight: "bold",
+    },
+    h6: {
+      fontWeight: "bold",
+    },
+    /*  button: {
+      fontStyle: "italic",
+    }, */
   },
 });
 
@@ -48,31 +73,75 @@ export const products = [
 ];
 
 function App() {
-  const [navbar, setNavbar] = useState(2);
+  /* const [navbar, setNavbar] = useState(2); */
+  const [{ user, notifs }, dispatch] = useStateValue();
+
+  const [navbar, setNavbar] = useState(0);
 
   return (
     <ThemeProvider theme={colorTheme}>
       <Router>
         <div className="App">
-          {/*  {navbar === 1 ? (
+          {navbar === 1 ? (
             <NavbarOne />
           ) : navbar === 2 ? (
             <NavbarTwo />
           ) : navbar === 3 ? (
             <NavbarThree />
-          ) : null} */}
-          option 1
+          ) : null}
+
+          <h3>Choose the type of Navbar</h3>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              setNavbar(1);
+            }}
+          >
+            1
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              setNavbar(2);
+            }}
+          >
+            2
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              setNavbar(3);
+            }}
+          >
+            3
+          </Button>
+          {/*   option 1
           <NavbarOne />
           option 2:
           <NavbarTwo />
           option 3
-          <NavbarThree />
+          <NavbarThree /> */}
           <br />
           <br />
           <br />
+          <ImageUpload />
           <img
             src={optionsWomen}
             style={{ width: "100%", objectFit: "contain" }}
+          />
+          {/*       <Utils /> */}
+          <Snackbar
+            open={notifs.value}
+            autoHideDuration={6000}
+            message={notifs.msg}
+            /*  action={
+              <Button color="inherit" size="small">
+                Cancel
+              </Button>
+            } */
           />
           <Container maxWidth="lg">
             <Grid container spacing={2}>
@@ -138,35 +207,6 @@ function App() {
               <div>navbar two</div>
               <Link to="/admin-login">login</Link>
 
-              {/*    <h3>Choose the type of Navbar</h3>
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => {
-                  setNavbar(1);
-                }}
-              >
-                1
-              </Button>
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => {
-                  setNavbar(2);
-                }}
-              >
-                2
-              </Button>
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => {
-                  setNavbar(3);
-                }}
-              >
-                3
-              </Button>
- */}
               <Grid container alignItems="center" spacing={1}>
                 {products.map((val, key) => (
                   <Grid item xs={6} sm={4} md={3}>

@@ -28,6 +28,18 @@ p {
 
 #product-card-one {
   padding: 1rem;
+}
+#heart-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: red;
+  z-index: 3;
+}
+
+#product-card-one,
+#product-card-two,
+#product-card-three {
   position: relative;
   top: 0;
 }

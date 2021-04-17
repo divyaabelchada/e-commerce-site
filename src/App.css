@@ -2,6 +2,10 @@
   text-decoration: none;
   color: inherit;
 }
+.MuiBadge-badge {
+  background-color: #03d061;
+  color: #fff;
+}
 
 .navbar-tabs-active {
   color: grey;

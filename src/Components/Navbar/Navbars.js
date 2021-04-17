@@ -3,7 +3,14 @@ import "./css/Navbar.css";
 /* import { Menu, Dropdown, Button } from "antd";
 import "antd/dist/antd.less"; */
 
-import { Container, Grid, IconButton, makeStyles } from "@material-ui/core";
+import {
+  Badge,
+  Container,
+  Grid,
+  IconButton,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 
@@ -54,7 +61,8 @@ export function NavbarOne() {
 
             <Grid item md={2} style={{ textAlign: "left" }}>
               <Link to="/" className="links">
-                <h2>App Studio</h2>
+                {/* <h2>App Studio</h2> */}
+                <Typography variant="h6">App Studio</Typography>
               </Link>
             </Grid>
             <Grid item xs={showDrawer ? 3 : 4}>
@@ -63,7 +71,8 @@ export function NavbarOne() {
             <Grid item md={6}>
               <Grid container justify="flex-end" spacing={2}>
                 <Grid item>
-                  <h4>Location </h4>
+                  {/*   <h4>Location </h4> */}
+                  <Typography>Location</Typography>
                   {/*  <Dropdown overlay={menu} placement="bottomLeft" arrow>
                     <div
                       style={{
@@ -78,14 +87,16 @@ export function NavbarOne() {
                   </Dropdown> */}
                 </Grid>
                 <Grid item>
-                  <h4>Cart</h4>
+                  <Typography color="secondary">Cart</Typography>
                 </Grid>
                 <Grid item>
-                  <h4>Wishlist</h4>
+                  {/* <h4>Wishlist</h4> */}
+                  <Typography>Wishlist</Typography>
                 </Grid>
 
                 <Grid item>
-                  <h4>Your Profile</h4>
+                  {/* <h4>Your Profile</h4> */}
+                  <Typography>Login/Sign up</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -128,7 +139,8 @@ export function NavbarTwo() {
         )}
         <Grid item md={2} style={{ textAlign: "left" }}>
           <Link to="/" className="links">
-            <h2>App Studio</h2>
+            {/*  <h2>App Studio</h2> */}
+            <Typography variant="h6">App Studio</Typography>
           </Link>
         </Grid>
         <Grid item md={4}>
@@ -160,14 +172,24 @@ export function NavbarTwo() {
               </Grid>
             </Grid>
             <Grid item>
-              <Avatar
-                style={{
-                  backgroundColor: "#fff",
-                  boxShadow: "0px 0px 5px #b0bec5",
+              <Badge
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
                 }}
+                overlap="circle"
+                badgeContent={1}
+                color="default"
               >
-                <ShoppingCart color="secondary" />
-              </Avatar>
+                <Avatar
+                  style={{
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 0px 5px #b0bec5",
+                  }}
+                >
+                  <ShoppingCart color="secondary" />
+                </Avatar>
+              </Badge>
             </Grid>
             <Grid item>
               <Avatar
@@ -230,7 +252,8 @@ export function NavbarThree() {
         </Grid>
         <Grid item md={2} style={{ textAlign: "left" }}>
           <Link to="/" className="links">
-            <h2>App Studio</h2>
+            {/* <h2>App Studio</h2> */}
+            <Typography variant="h6">App Studio</Typography>
           </Link>
         </Grid>
         <Grid item xs={3}></Grid>
@@ -242,18 +265,33 @@ export function NavbarThree() {
           <Grid container alignItems="center" spacing={1} justify="flex-end">
             <Grid item>
               <IconButton>
-                <ShoppingCart />
+                <ShoppingCart color="secondary" />
               </IconButton>
             </Grid>
             <Grid item>
               <IconButton>
-                <Notifications />
+                <Notifications color="secondary" />
               </IconButton>
             </Grid>
             <Grid item>
-              <Avatar>
-                <Person />
-              </Avatar>
+              <Badge
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                overlap="circle"
+                badgeContent={1}
+                color="default"
+              >
+                <Avatar
+                  style={{
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 0px 5px #b0bec5",
+                  }}
+                >
+                  <Person color="secondary" />
+                </Avatar>
+              </Badge>
             </Grid>
           </Grid>
         </Grid>

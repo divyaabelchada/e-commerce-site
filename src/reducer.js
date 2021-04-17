@@ -5,6 +5,7 @@ export const initialState = {
   userData: { value: false, data: null },
   products: { value: false, error: false, errorMSg: "", data: null },
   cart: { value: false, error: false, errorMSg: "", data: null },
+  notifs: { value: false, error: false, msg: "" },
 };
 
 export const actionTypes = {
@@ -14,6 +15,7 @@ export const actionTypes = {
   SET_ADMIN_DETAILS: "ADMIN_DETAILS",
   SET_PRODUCTS: "ADMIN_PRODUCTS",
   SET_CART: "ADMIN_CART",
+  SET_NOTIFS: "SET_NOTIFS",
 };
 
 const reducer = (state, action) => {
@@ -23,6 +25,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case actionTypes.SET_NOTIFS:
+      return {
+        ...state,
+        notifs: action.notifs,
       };
 
     default:
