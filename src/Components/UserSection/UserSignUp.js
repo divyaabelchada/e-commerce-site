@@ -14,23 +14,29 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Alert } from "@material-ui/lab";
 import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
+import { AppName } from "../../App";
+import { Avatar } from "@material-ui/core";
+import { PersonAdd } from "@material-ui/icons";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" to="/">
-        Naveen Bambhani
+        {AppName}
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
+      <br />
+      <br /> <br />
+      <br />
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -44,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(1, 0, 1),
+    margin: theme.spacing(3, 0, 2),
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -52,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function UserSignUp() {
   const classes = useStyles();
   const history = useHistory();
-  const [{ user, adminData }, dispatch] = useStateValue();
+  const [{ user, userData }, dispatch] = useStateValue();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -63,7 +69,6 @@ export default function SignUp() {
   const [lName, setLName] = useState("");
   const [fName, setFName] = useState("");
   const [contact, setContact] = useState("");
-  const [aadhar, setAadhar] = useState("");
 
   const [registered, setRegistered] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -90,20 +95,19 @@ export default function SignUp() {
     e.preventDefault();
     if (registered) {
       dispatch({
-        type: actionTypes.SET_ADMIN_DETAILS,
-        adminData: {
+        type: actionTypes.SET_USER_DETAILS,
+        userData: {
           value: true,
           data: {
-            username: username,
             lName: lName,
             fName: fName,
             contact: contact,
-            aadhar: aadhar,
-            userType: "admin",
+            email: email,
+            userType: "user",
           },
         },
       });
-      history.push("/admin-login");
+      history.push("/user-login");
     }
   };
 
@@ -120,8 +124,12 @@ export default function SignUp() {
 
           {registered ? (
             <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <PersonAdd />
+              </Avatar>
+
               <Typography component="h1" variant="h5">
-                Add your details
+                Just a few steps
               </Typography>
 
               <form className={classes.form} noValidate>
@@ -153,18 +161,7 @@ export default function SignUp() {
                       onChange={(e) => setLName(e.target.value)}
                     />
                   </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      label="Company name"
-                      name="username"
-                      autoComplete="username"
-                      required
-                      fullWidth
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                  </Grid>
+
                   <Grid item xs={12}>
                     <TextField
                       variant="outlined"
@@ -175,20 +172,6 @@ export default function SignUp() {
                       fullWidth
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      autoComplete="aadhar"
-                      name="firstName"
-                      variant="outlined"
-                      required
-                      fullWidth
-                      id="firstName"
-                      label="Aadhar number"
-                      value={aadhar}
-                      onChange={(e) => setAadhar(e.target.value)}
-                      autoFocus
                     />
                   </Grid>
                 </Grid>
@@ -205,15 +188,20 @@ export default function SignUp() {
 
                 <Grid container justify="flex-center">
                   <Grid item>
-                    <Link to={`/`}>Already have an account? Login</Link>
+                    <Link to={`/user-login`}>
+                      Already have an account? Login
+                    </Link>
                   </Grid>
                 </Grid>
               </form>
             </div>
           ) : (
             <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <PersonAdd />
+              </Avatar>
               <Typography component="h1" variant="h5">
-                Register as vendor
+                Sign up
               </Typography>
               <form className={classes.form} noValidate>
                 <Grid container spacing={2}>
@@ -258,7 +246,9 @@ export default function SignUp() {
 
                 <Grid container justify="flex-center">
                   <Grid item>
-                    <Link to={`/`}>Already have an account? Login</Link>
+                    <Link to={`/user-login`}>
+                      Already have an account? Login
+                    </Link>
                   </Grid>
                 </Grid>
               </form>

@@ -25,18 +25,6 @@ import { actionTypes } from "../../reducer";
 
 export function ProductCardone(props) {
   const [{ user, notifs }, dispatch] = useStateValue();
-  const addToCart = () => {
-    dispatch({
-      type: actionTypes.SET_NOTIFS,
-      notifs: { value: true, error: false, msg: "Product added to cart" },
-    });
-    setTimeout(() => {
-      dispatch({
-        type: actionTypes.SET_NOTIFS,
-        notifs: { value: false, error: false, msg: "Product added to cart" },
-      });
-    }, 2000);
-  };
 
   return (
     <div>
@@ -62,7 +50,7 @@ export function ProductCardone(props) {
               fullWidth
               color="secondary"
               variant="outlined"
-              onClick={addToCart}
+              onClick={props.addToCart(1)}
             >
               Add to cart
             </Button>
@@ -88,18 +76,6 @@ export function ProductCardone(props) {
 export function ProductCardTwo(props) {
   const [{ user, notifs }, dispatch] = useStateValue();
 
-  const addToCart = () => {
-    dispatch({
-      type: actionTypes.SET_NOTIFS,
-      notifs: { value: true, error: false, msg: "Product added to cart" },
-    });
-    setTimeout(() => {
-      dispatch({
-        type: actionTypes.SET_NOTIFS,
-        notifs: { value: false, error: false, msg: "Product added to cart" },
-      });
-    }, 2000);
-  };
   return (
     <div>
       {" "}
@@ -125,7 +101,7 @@ export function ProductCardTwo(props) {
               fullWidth
               color="secondary"
               variant="outlined"
-              onClick={addToCart}
+              onClick={props.addToCart(1)}
             >
               Add to cart
             </Button>
@@ -150,18 +126,6 @@ export function ProductCardTwo(props) {
 export function ProductCardThree(props) {
   const [{ user, notifs }, dispatch] = useStateValue();
 
-  const addToCart = () => {
-    dispatch({
-      type: actionTypes.SET_NOTIFS,
-      notifs: { value: true, error: false, msg: "Product added to cart" },
-    });
-    setTimeout(() => {
-      dispatch({
-        type: actionTypes.SET_NOTIFS,
-        notifs: { value: false, error: false, msg: "Product added to cart" },
-      });
-    }, 2000);
-  };
   return (
     <div>
       <Card elevation={0} id="product-card-three">
@@ -194,7 +158,7 @@ export function ProductCardThree(props) {
                   fullWidth
                   color="secondary"
                   variant="outlined"
-                  onClick={addToCart}
+                  onClick={props.addToCart(1)}
                 >
                   Add to cart
                 </Button>

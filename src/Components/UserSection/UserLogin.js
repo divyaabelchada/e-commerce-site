@@ -15,11 +15,10 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { db, auth, provider } from "../../firebase";
 import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
-import AdminDashboard from "../../Pages/AdminDashboard";
 import { CircularProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { AppName } from "../../App";
-import { Security } from "@material-ui/icons";
+import { AccountCircle, Security } from "@material-ui/icons";
 
 function Copyright() {
   return (
@@ -29,7 +28,9 @@ function Copyright() {
         {AppName}
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
+      <br />
+      <br /> <br />
+      <br />
     </Typography>
   );
 }
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminLogin() {
+export default function UserLogin() {
   const classes = useStyles();
 
   const history = useHistory();
@@ -64,9 +65,7 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ value: false, msg: "" });
 
-  const [admin, setAdmin] = useState(false);
-
-  const [{ user, adminData }, dispatch] = useStateValue();
+  const [{ user, userData }, dispatch] = useStateValue();
 
   const login = (event) => {
     event.preventDefault();
@@ -76,41 +75,43 @@ export default function AdminLogin() {
       .then((result) => {
         setAlert({ value: false, msg: "" });
         //console.log(result.user.uid);
-        db.collection("admin")
+        db.collection("users")
           .doc(result.user.uid)
           .get()
           .then((doc) => {
             if (doc.exists) {
               dispatch({
-                type: actionTypes.SET_USER,
-                user: null,
-              });
-              dispatch({
                 type: actionTypes.SET_ADMIN,
-                admin: result.user,
+                admin: null,
               });
               dispatch({
-                type: actionTypes.SET_ADMIN_DASHBOARD,
-                adminDetails: doc.data(),
+                type: actionTypes.SET_USER,
+                user: result.user,
               });
-              history.push("/admin-dashboard");
+              dispatch({
+                type: actionTypes.SET_USER_DASHBOARD,
+                userDetails: doc.data(),
+              });
+              setLoading(true);
+              setTimeout(() => {
+                setLoading(false);
+                history.push("/user-profile");
+              }, 2000);
             } else {
               // doc.data() will be undefined in this case
-              setAlert({ value: true, msg: "Unauthorised access" });
+              setAlert({
+                value: true,
+                msg: "Unable to find your account, Please sign up to continue",
+              });
             }
           })
           .catch((error) => {
             //console.log("Error getting document:", error);
             setAlert({ value: true, msg: "Error getting document" });
           });
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-        }, 3000);
       })
       .catch((error) => setAlert({ value: true, msg: error.message }));
   };
-
   return (
     <div>
       {loading ? (
@@ -140,10 +141,10 @@ export default function AdminLogin() {
           )}
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-              <Security />
+              <AccountCircle />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Admin Sign in
+              Sign in
             </Typography>
             <form className={classes.form} noValidate>
               <TextField
@@ -192,11 +193,11 @@ export default function AdminLogin() {
                     Forgot password?
                   </Link>
                 </Grid>
-                {/* <Grid item>
-                  <Link to="/admin-signup" variant="body2">
+                <Grid item>
+                  <Link to="/user-signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
-                </Grid> */}
+                </Grid>
               </Grid>
             </form>
           </div>

@@ -37,265 +37,59 @@ import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import {
   SearchboxFive,
+  SearchBoxFour,
   SearchBoxOne,
   SearchBoxThree,
   SearchBoxTwo,
 } from "./SearchBoxes";
 import Drawer from "./Drawer";
-import { colorTheme, showDrawer } from "../../App";
+import {
+  colorTheme,
+  showDrawer,
+  SearchBox,
+  actionType,
+  AppName,
+} from "../../App";
 import { grey } from "@material-ui/core/colors";
+import NavbarActions from "./NavbarComponents/NavbarActions";
 
-export function NavbarOne() {
+export function Navbar() {
   return (
     <div>
       <div id="navbar" style={{ backgroundColor: "#fafafa" }}>
-        <Container>
-          <Grid container alignItems="center">
-            {showDrawer ? (
-              <Grid item xs={1}>
-                <Drawer />
-              </Grid>
-            ) : (
-              <></>
-            )}
-
-            <Grid item md={2} style={{ textAlign: "left" }}>
-              <Link to="/" className="links">
-                {/* <h2>App Studio</h2> */}
-                <Typography variant="h6">App Studio</Typography>
-              </Link>
+        <Grid container alignItems="center">
+          {showDrawer ? (
+            <Grid item xs={1}>
+              <Drawer />
             </Grid>
-            <Grid item xs={showDrawer ? 3 : 4}>
+          ) : (
+            <></>
+          )}
+
+          <Grid item md={2} style={{ textAlign: "left" }}>
+            <Link to="/" className="links">
+              {/* <h2>App Studio</h2> */}
+              <Typography variant="h6"> {AppName} </Typography>
+            </Link>
+          </Grid>
+          <Grid item xs={showDrawer ? 4 : 5}>
+            {SearchBox === 1 ? (
+              <SearchBoxOne />
+            ) : SearchBox === 2 ? (
+              <SearchBoxTwo />
+            ) : SearchBox === 3 ? (
               <SearchBoxThree />
-            </Grid>
-            <Grid item md={6}>
-              <Grid container justify="flex-end" spacing={2}>
-                <Grid item>
-                  {/*   <h4>Location </h4> */}
-                  <Typography>Location</Typography>
-                  {/*  <Dropdown overlay={menu} placement="bottomLeft" arrow>
-                    <div
-                      style={{
-                        display: "flex",
-                       
-                        cursor: "pointer",
-                      }}
-                    >
-                      <h4>User </h4>
-                      <ExpandMore />
-                    </div>
-                  </Dropdown> */}
-                </Grid>
-                <Grid item>
-                  <Typography color="secondary">Cart</Typography>
-                </Grid>
-                <Grid item>
-                  {/* <h4>Wishlist</h4> */}
-                  <Typography>Wishlist</Typography>
-                </Grid>
-
-                <Grid item>
-                  {/* <h4>Your Profile</h4> */}
-                  <Typography>Login/Sign up</Typography>
-                </Grid>
-              </Grid>
-            </Grid>
+            ) : SearchBox === 4 ? (
+              <SearchBoxFour />
+            ) : (
+              <SearchboxFive />
+            )}
           </Grid>
-        </Container>
+          <Grid item md={5}>
+            <NavbarActions actionType={actionType} />{" "}
+          </Grid>
+        </Grid>
       </div>
-    </div>
-  );
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  avatar: {
-    backgrounColor: grey[100],
-  },
-}));
-
-export function NavbarTwo() {
-  const classes = useStyles();
-  return (
-    <div style={{ backgroundColor: "#fafafa" }}>
-      <Grid
-        style={{ padding: "0 2rem" }}
-        container
-        alignItems="center"
-        spacing={1}
-        justify="center"
-      >
-        {showDrawer ? (
-          <Grid item xs={1}>
-            <Drawer />
-          </Grid>
-        ) : (
-          <></>
-        )}
-        <Grid item md={2} style={{ textAlign: "left" }}>
-          <Link to="/" className="links">
-            {/*  <h2>App Studio</h2> */}
-            <Typography variant="h6">App Studio</Typography>
-          </Link>
-        </Grid>
-        <Grid item md={4}>
-          <SearchBoxTwo />
-          {/* <SearchboxFive /> */}
-        </Grid>
-
-        <Grid item md={showDrawer ? 5 : 6}>
-          <Grid container justify="flex-end" spacing={2}>
-            <Grid item xs={4}>
-              <Grid container alignItems="center" spacing={1}>
-                <Grid item xs={3}>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png"
-                    style={{
-                      objectFit: "contain",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={9}>
-                  <p style={{ margin: 0 }}>
-                    <small style={{ margin: 0 }}>Location</small>
-                    <br />
-                    Mumbai, India
-                  </p>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Badge
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                overlap="circle"
-                badgeContent={1}
-                color="default"
-              >
-                <Avatar
-                  style={{
-                    backgroundColor: "#fff",
-                    boxShadow: "0px 0px 5px #b0bec5",
-                  }}
-                >
-                  <ShoppingCart color="secondary" />
-                </Avatar>
-              </Badge>
-            </Grid>
-            <Grid item>
-              <Avatar
-                style={{
-                  backgroundColor: "#fff",
-                  boxShadow: "0px 0px 5px #b0bec5",
-                }}
-              >
-                <Favorite color="secondary" />
-              </Avatar>
-            </Grid>
-            <Grid item>
-              <Avatar
-                style={{
-                  backgroundColor: "#fff",
-                  boxShadow: "0px 0px 5px #b0bec5",
-                }}
-              >
-                <Notifications color="secondary" />
-              </Avatar>
-            </Grid>
-            <Grid item>
-              <Avatar
-                style={{
-                  backgroundColor: "#fff",
-                  boxShadow: "0px 0px 5px #b0bec5",
-                }}
-              >
-                <Person color="secondary" />
-              </Avatar>
-            </Grid>
-            <Grid item>
-              <Avatar
-                style={{
-                  backgroundColor: "#fff",
-                  boxShadow: "0px 0px 5px #b0bec5",
-                }}
-              >
-                <Translate color="secondary" />
-              </Avatar>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
-  );
-}
-export function NavbarThree() {
-  return (
-    <div>
-      <Grid
-        style={{ padding: "0 2rem" }}
-        container
-        alignItems="center"
-        spacing={1}
-        justify="space-around"
-      >
-        <Grid item xs={1}>
-          <Drawer />
-        </Grid>
-        <Grid item md={2} style={{ textAlign: "left" }}>
-          <Link to="/" className="links">
-            {/* <h2>App Studio</h2> */}
-            <Typography variant="h6">App Studio</Typography>
-          </Link>
-        </Grid>
-        <Grid item xs={3}></Grid>
-        <Grid item md={3}>
-          <SearchBoxOne />
-        </Grid>
-
-        <Grid item md={2}>
-          <Grid container alignItems="center" spacing={1} justify="flex-end">
-            <Grid item>
-              <IconButton>
-                <ShoppingCart color="secondary" />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton>
-                <Notifications color="secondary" />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <Badge
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                overlap="circle"
-                badgeContent={1}
-                color="default"
-              >
-                <Avatar
-                  style={{
-                    backgroundColor: "#fff",
-                    boxShadow: "0px 0px 5px #b0bec5",
-                  }}
-                >
-                  <Person color="secondary" />
-                </Avatar>
-              </Badge>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
     </div>
   );
 }

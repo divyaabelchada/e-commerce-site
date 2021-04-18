@@ -38,7 +38,7 @@ import { grey } from "@material-ui/core/colors";
 import { useStateValue } from "../../../StateProvider";
 
 function NavbarActions({ actionType }) {
-  const [{ user, notifs }, dispatch] = useStateValue();
+  const [{ user, userDetails, notifs }, dispatch] = useStateValue();
 
   const options = {
     location: true,
@@ -381,7 +381,10 @@ function NavbarActions({ actionType }) {
                   to="/user-profile"
                   activeClassName="current-link"
                 >
-                  <Typography color="secondary">Profile</Typography>
+                  <Typography color="secondary">
+                    {" "}
+                    {!userDetails ? "Profile" : userDetails.fName}
+                  </Typography>
                 </NavLink>
               )}
             </Grid>
