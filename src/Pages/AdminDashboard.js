@@ -1,4 +1,12 @@
-import { Grid, Icon, IconButton } from "@material-ui/core";
+import {
+  Avatar,
+  Box,
+  Grid,
+  Icon,
+  IconButton,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import {
   AccountBox,
   AccountCircle,
@@ -7,10 +15,11 @@ import {
   Group,
   MoveToInbox,
   Publish,
+  Security,
   SettingsApplications,
   Shop,
 } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
@@ -25,20 +34,37 @@ import SendIcon from "@material-ui/icons/Send";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
+import { useStateValue } from "../StateProvider";
+import AllUsers from "../Components/AdminSection/AllUsers";
+import AllProducts from "../Components/AdminSection/AllProducts";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
+    minHeight: "70vh",
+    backgroundColor: theme.palette.secondary.main,
     backgroundBlendMode: "screen",
   },
   listItem: {
+    padding: "0.5rem 1rem",
     "&:hover": {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: "#fff",
     },
+  },
+  listItemActive: {
+    backgroundColor: "#fff",
   },
   nested: {
     paddingLeft: theme.spacing(4),
+  },
+  profileCard: {
+    padding: theme.spacing(5, 2),
+    textAlign: "center",
+    backgroundColor: theme.palette.secondary.main,
+  },
+  avatar: {
+    marginTop: theme.spacing(1),
+    backgroundColor: "#fff",
   },
 }));
 
@@ -54,27 +80,44 @@ function AdminDashboard() {
     "Settings",
   ];
   const [currentTab, setCurrentTab] = useState(tabs[0]);
-
-  //   className={clsx(classes.chat__message, {
-  //     [classes.chat__receiver]: message.name == user.displayName,
-  // })}
+  const [{ user, admin, notifs, adminDetails }, dispatch] = useStateValue();
 
   return (
-    <div>
+    <div style={{ width: "100%", overflow: "hidden" }}>
       <Grid container alignItems="flex-start">
-        <Grid item xs={3}>
+        <Grid item xs={3} style={{ zIndex: 3 }}>
+          <div className={classes.profileCard}>
+            <Grid container alignItems="center" justify="center" spacing={2}>
+              <Avatar className={classes.avatar}>
+                <Security color="primary" />
+              </Avatar>
+
+              <Grid item xs={12}>
+                {!adminDetails ? (
+                  <></>
+                ) : (
+                  <Typography variant="h6">
+                    <p style={{ fontWeight: "normal" }}>
+                      <small>Welcome back,</small>
+                    </p>{" "}
+                    <b>
+                      {adminDetails.fname} {adminDetails.lname}{" "}
+                    </b>{" "}
+                    <br />
+                  </Typography>
+                )}
+              </Grid>
+            </Grid>
+          </div>
           <List
             component="nav"
             aria-labelledby="nested-list-subheader"
-            subheader={
-              <ListSubheader component="div" id="nested-list-subheader">
-                Admin Dashboard
-              </ListSubheader>
-            }
             className={classes.root}
           >
             <ListItem
-              className={classes.listItem}
+              className={clsx(classes.listItem, {
+                [classes.listItemActive]: currentTab == tabs[0],
+              })}
               button
               onClick={() => setCurrentTab(tabs[0])}
             >
@@ -84,7 +127,9 @@ function AdminDashboard() {
               <ListItemText primary="Dashboard" />
             </ListItem>
             <ListItem
-              className={classes.listItem}
+              className={clsx(classes.listItem, {
+                [classes.listItemActive]: currentTab == tabs[1],
+              })}
               button
               onClick={() => setCurrentTab(tabs[1])}
             >
@@ -94,7 +139,9 @@ function AdminDashboard() {
               <ListItemText primary="Products" />
             </ListItem>
             <ListItem
-              className={classes.listItem}
+              className={clsx(classes.listItem, {
+                [classes.listItemActive]: currentTab == tabs[2],
+              })}
               button
               onClick={() => setCurrentTab(tabs[2])}
             >
@@ -105,7 +152,9 @@ function AdminDashboard() {
             </ListItem>
 
             <ListItem
-              className={classes.listItem}
+              className={clsx(classes.listItem, {
+                [classes.listItemActive]: currentTab == tabs[3],
+              })}
               button
               onClick={() => setCurrentTab(tabs[3])}
             >
@@ -116,7 +165,9 @@ function AdminDashboard() {
             </ListItem>
 
             <ListItem
-              className={classes.listItem}
+              className={clsx(classes.listItem, {
+                [classes.listItemActive]: currentTab == tabs[4],
+              })}
               button
               onClick={() => setCurrentTab(tabs[4])}
             >
@@ -127,7 +178,9 @@ function AdminDashboard() {
             </ListItem>
 
             <ListItem
-              className={classes.listItem}
+              className={clsx(classes.listItem, {
+                [classes.listItemActive]: currentTab == tabs[5],
+              })}
               button
               onClick={() => setCurrentTab(tabs[5])}
             >
@@ -138,20 +191,30 @@ function AdminDashboard() {
             </ListItem>
           </List>
         </Grid>
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} md={9} className={classes.dashboardArea}>
+          <Box
+            bgcolor="primary.main"
+            style={{ textAlign: "center", color: "#fff" }}
+          >
+            <Typography variant="h6"> {currentTab} </Typography>
+          </Box>
           {/* switching */}
           {currentTab === tabs[0] ? (
             <div>dashboard</div>
           ) : currentTab === tabs[1] ? (
-            <div>tabs 0</div>
+            <div>
+              <AllProducts />
+            </div>
           ) : currentTab === tabs[2] ? (
-            <div>tabs 2</div>
+            <div></div>
           ) : currentTab === tabs[3] ? (
-            <div>tabs 3</div>
+            <div></div>
           ) : currentTab === tabs[4] ? (
-            <div>user</div>
+            <div>
+              <AllUsers />
+            </div>
           ) : currentTab === tabs[5] ? (
-            <div>setting</div>
+            <div></div>
           ) : (
             <div></div>
           )}

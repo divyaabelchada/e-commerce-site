@@ -1,4 +1,10 @@
 export const initialState = {
+  config: {
+    appName: "App Studio",
+    contact: "7718962565",
+    email: "xyz@support.in",
+  },
+  appTheme: { primary: "#011684", secondary: "#DFE4FF" },
   user: null,
   userDetails: null,
   adminDetails: null,

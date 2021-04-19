@@ -1,9 +1,11 @@
 #product-img {
   height: 100%;
   width: 100%;
-  max-height: 250px;
+  max-height: 230px;
+  min-height: 230px;
   transition: transform 0.3s;
   cursor: pointer;
+  object-fit: contain;
 }
 #product-img:hover {
   transform: scale(1.3);

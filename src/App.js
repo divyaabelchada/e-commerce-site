@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbars";
 
+//firebase
+import { db, auth, provider } from "./firebase";
 //redux
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
@@ -138,20 +140,21 @@ export default function App() {
             </Grid>
           </Container>
 
-          <Navbar />
-
           {/* navbar ends here.. */}
           <Switch>
             <Route path="/some-path">
               <div>default</div>
             </Route>
             <Route path="/user-signup">
+              <Navbar />
               <UserSignUp />
             </Route>
             <Route path="/user-login">
+              <Navbar />
               <UserLogin />
             </Route>
             <Route path="/user-profile">
+              <Navbar />
               {!user ? <div>login</div> : <div> user dashboard</div>}
             </Route>
             <Route path="/admin-dashboard">
@@ -160,7 +163,10 @@ export default function App() {
             <Route path="/admin-login">
               <AdminLogin />
             </Route>
-            <Route path="/">Home</Route>
+            <Route path="/">
+              <Navbar />
+              Home
+            </Route>
           </Switch>
         </div>
         <Footer />
