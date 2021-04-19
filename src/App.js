@@ -36,25 +36,23 @@ import optionsMen from "./assets/optionsMen.png";
 import ImageUpload from "./Components/AdminSection/ImageUpload";
 import UserLogin from "./Components/UserSection/UserLogin";
 import UserSignUp from "./Components/UserSection/UserSignUp";
+import AdminDashboard from "./Pages/AdminDashboard";
 
 /* ========== setting up theme =========== */
 export const colorTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#ff0077",
+      main: "#011684",
     },
     secondary: {
-      main: "#f678aa",
-    },
-    neutral: {
-      main: "#03D061",
+      main: "#DFE4FF",
     },
   },
   typography: {
     /* subtitle1: {
       fontSize: 12,
     }, */
-    body1: {
+    body2: {
       fontWeight: "bold",
     },
     h6: {
@@ -66,7 +64,7 @@ export const colorTheme = createMuiTheme({
   },
 });
 
-export const SearchBox = 1;
+export const SearchBox = 3;
 export const showDrawer = true;
 export const actionType = 3;
 export const AppName = "App Studio";
@@ -115,7 +113,8 @@ export default function App() {
                   className="links"
                   activeClassName="header-links"
                 >
-                  {!admin ? "Admin Login" : "Admin Dashboard"}
+                  {" "}
+                  <small>{!admin ? "Admin Login" : "Admin Dashboard"}</small>
                 </NavLink>
               </Grid>
               <Grid item>
@@ -124,7 +123,7 @@ export default function App() {
                   className="links"
                   activeClassName="header-links"
                 >
-                  Contact us
+                  <small>Contact us</small>
                 </NavLink>
               </Grid>
               <Grid item>
@@ -133,7 +132,7 @@ export default function App() {
                   className="links"
                   activeClassName="header-links"
                 >
-                  About us
+                  <small>About us</small>
                 </NavLink>
               </Grid>
             </Grid>
@@ -141,9 +140,6 @@ export default function App() {
 
           <Navbar />
 
-          <br />
-          <br />
-          <br />
           {/* navbar ends here.. */}
           <Switch>
             <Route path="/some-path">
@@ -159,7 +155,7 @@ export default function App() {
               {!user ? <div>login</div> : <div> user dashboard</div>}
             </Route>
             <Route path="/admin-dashboard">
-              {!admin ? <div>login</div> : <div> admin dashboard</div>}
+              {!admin ? <div>login</div> : <AdminDashboard />}
             </Route>
             <Route path="/admin-login">
               <AdminLogin />

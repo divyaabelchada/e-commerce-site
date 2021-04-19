@@ -103,7 +103,7 @@ function NavbarActions({ actionType }) {
                   }}
                 >
                   <Avatar style={{ backgroundColor: "#fff" }}>
-                    <Favorite color="secondary" />
+                    <Favorite color="primary" />
                   </Avatar>
                 </NavLink>
               </Badge>
@@ -134,7 +134,7 @@ function NavbarActions({ actionType }) {
                   }}
                 >
                   <Avatar style={{ backgroundColor: "#fff" }}>
-                    <Notifications color="secondary" />
+                    <Notifications color="primary" />
                   </Avatar>
                 </NavLink>
               </Badge>
@@ -165,7 +165,7 @@ function NavbarActions({ actionType }) {
                   }}
                 >
                   <Avatar style={{ backgroundColor: "#fff" }}>
-                    <ShoppingCart color="secondary" />
+                    <ShoppingCart color="primary" />
                   </Avatar>
                 </NavLink>
               </Badge>
@@ -197,7 +197,7 @@ function NavbarActions({ actionType }) {
                   }}
                 >
                   <Avatar style={{ backgroundColor: "#fff" }}>
-                    <Person color="secondary" />
+                    <Person color="primary" />
                   </Avatar>
                 </NavLink>
               </Badge>
@@ -213,7 +213,7 @@ function NavbarActions({ actionType }) {
                   backgroundColor: "#fff",
                 }}
               >
-                <Translate color="secondary" />
+                <Translate color="primary" />
               </Avatar>
             </Grid>
           ) : (
@@ -232,7 +232,7 @@ function NavbarActions({ actionType }) {
                 }}
               >
                 <IconButton>
-                  <Favorite color="secondary" />
+                  <Favorite color="primary" />
                 </IconButton>
               </NavLink>
             </Grid>
@@ -258,7 +258,7 @@ function NavbarActions({ actionType }) {
                     badgeContent={1}
                     color="default"
                   >
-                    <ShoppingCart color="secondary" />
+                    <ShoppingCart color="primary" />
                   </Badge>
                 </IconButton>
               </NavLink>
@@ -285,7 +285,7 @@ function NavbarActions({ actionType }) {
                     badgeContent={1}
                     color="default"
                   >
-                    <Notifications color="secondary" />
+                    <Notifications color="primary" />
                   </Badge>
                 </IconButton>
               </NavLink>
@@ -304,7 +304,7 @@ function NavbarActions({ actionType }) {
                 }}
               >
                 <IconButton>
-                  <AccountCircle color="secondary" />
+                  <AccountCircle color="primary" />
                 </IconButton>
               </NavLink>
             </Grid>
@@ -317,7 +317,7 @@ function NavbarActions({ actionType }) {
         <Grid container justify="flex-end" spacing={3}>
           {options.location ? (
             <Grid item>
-              <Typography>Location</Typography>
+              <Typography variant="body2">Location</Typography>
             </Grid>
           ) : (
             <></>
@@ -330,7 +330,9 @@ function NavbarActions({ actionType }) {
                 to="/notifications"
                 activeClassName="current-link"
               >
-                <Typography color="secondary">Notifications</Typography>
+                <Typography variant="body2" color="primary">
+                  Notifications
+                </Typography>
               </NavLink>{" "}
             </Grid>
           ) : (
@@ -344,7 +346,9 @@ function NavbarActions({ actionType }) {
                 to="/cart-items"
                 activeClassName="current-link"
               >
-                <Typography color="secondary">Cart</Typography>
+                <Typography variant="body2" color="primary">
+                  Cart
+                </Typography>
               </NavLink>
             </Grid>
           ) : (
@@ -358,7 +362,9 @@ function NavbarActions({ actionType }) {
                 to="/user-wishlist"
                 activeClassName="current-link"
               >
-                <Typography color="secondary">Wishlist</Typography>
+                <Typography variant="body2" color="primary">
+                  Wishlist
+                </Typography>
               </NavLink>
             </Grid>
           ) : (
@@ -373,7 +379,9 @@ function NavbarActions({ actionType }) {
                   to="/user-login"
                   activeClassName="current-link"
                 >
-                  <Typography color="secondary">Login</Typography>
+                  <Typography variant="body2" color="primary">
+                    Login
+                  </Typography>
                 </NavLink>
               ) : (
                 <NavLink
@@ -381,7 +389,7 @@ function NavbarActions({ actionType }) {
                   to="/user-profile"
                   activeClassName="current-link"
                 >
-                  <Typography color="secondary">
+                  <Typography variant="body2" color="primary">
                     {" "}
                     {!userDetails ? "Profile" : userDetails.fName}
                   </Typography>
