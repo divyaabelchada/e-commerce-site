@@ -37,6 +37,8 @@ import StarBorder from "@material-ui/icons/StarBorder";
 import { useStateValue } from "../StateProvider";
 import AllUsers from "../Components/AdminSection/AllUsers";
 import AllProducts from "../Components/AdminSection/AllProducts";
+import AllOrders from "../Components/AdminSection/AllOrders";
+import ImageUpload from "../Components/AdminSection/ImageUpload";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -202,13 +204,17 @@ function AdminDashboard() {
           {currentTab === tabs[0] ? (
             <div>dashboard</div>
           ) : currentTab === tabs[1] ? (
-            <div>
+            <div style={{ padding: "1rem" }}>
               <AllProducts />
             </div>
           ) : currentTab === tabs[2] ? (
-            <div></div>
+            <div>
+              <ImageUpload />
+            </div>
           ) : currentTab === tabs[3] ? (
-            <div></div>
+            <div>
+              <AllOrders />
+            </div>
           ) : currentTab === tabs[4] ? (
             <div>
               <AllUsers />

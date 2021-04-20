@@ -59,7 +59,7 @@ function AllProducts() {
             </div>
           ) : (
             <div>
-              <Grid container spacing={2} style={{ margin: "1rem" }}>
+              <Grid container spacing={2}>
                 {products.map(({ id, product }) => (
                   <Grid item xs={3}>
                     <Card

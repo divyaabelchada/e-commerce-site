@@ -27,11 +27,10 @@ function AllUsers() {
     });
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2000);
   }, []);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 170, resizable: true },
     {
       field: "fName",
       headerName: "First Name",
@@ -50,8 +49,9 @@ function AllUsers() {
     {
       field: "email",
       headerName: "Email",
-      width: 170,
+      width: 200,
     },
+    { field: "id", headerName: "ID", width: 170, resizable: true },
   ];
 
   return (

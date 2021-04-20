@@ -51,6 +51,7 @@ function ImageUpload() {
   const [category, setCategory] = useState("");
 
   const [image, setImage] = useState(null);
+  const [imageToShow, setImageToShow] = useState(null);
 
   const [progress, setProgress] = useState(0);
   const [imageSrc, setImageSrc] = useState("");
@@ -58,6 +59,7 @@ function ImageUpload() {
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
+      setImageToShow(URL.createObjectURL(e.target.files[0]));
     }
   };
 
@@ -117,6 +119,7 @@ function ImageUpload() {
           </Typography>
         </CardContent>
         <Container className={classes.form}>
+          <img src={imageToShow} />
           <form className={classes.form}>
             <progress
               style={{ width: "100%", height: 30 }}
