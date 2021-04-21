@@ -39,11 +39,12 @@ import AllUsers from "../Components/AdminSection/AllUsers";
 import AllProducts from "../Components/AdminSection/AllProducts";
 import AllOrders from "../Components/AdminSection/AllOrders";
 import ImageUpload from "../Components/AdminSection/ImageUpload";
+import UploadProducts from "../Components/AdminSection/UploadProducts";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    minHeight: "70vh",
+    minHeight: "100vh",
     backgroundColor: theme.palette.secondary.main,
     backgroundBlendMode: "screen",
   },
@@ -209,7 +210,8 @@ function AdminDashboard() {
             </div>
           ) : currentTab === tabs[2] ? (
             <div>
-              <ImageUpload />
+              {/* <ImageUpload /> */}
+              <UploadProducts />
             </div>
           ) : currentTab === tabs[3] ? (
             <div>

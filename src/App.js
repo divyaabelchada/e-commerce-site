@@ -55,7 +55,7 @@ export const colorTheme = createMuiTheme({
       fontSize: 12,
     }, */
     body2: {
-      fontWeight: "bold",
+      // fontWeight: "bold",
     },
     h6: {
       fontWeight: "bold",

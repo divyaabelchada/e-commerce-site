@@ -1,0 +1,5 @@
+#prod-desc img {
+  object-fit: contain;
+  width: 100%;
+  max-width: 200px;
+}
