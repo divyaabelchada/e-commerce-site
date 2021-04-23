@@ -14,16 +14,17 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Alert } from "@material-ui/lab";
 import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
-import { AppName } from "../../App";
 import { Avatar } from "@material-ui/core";
 import { PersonAdd } from "@material-ui/icons";
 
 function Copyright() {
+  const [{ user, adminData, config }, dispatch] = useStateValue();
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" to="/">
-        {AppName}
+        {!config ? "" : config.appName}
       </Link>{" "}
       {new Date().getFullYear()}
       <br />

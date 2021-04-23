@@ -1,6 +1,8 @@
 import {
   Avatar,
+  Badge,
   Box,
+  Button,
   Grid,
   Icon,
   IconButton,
@@ -40,6 +42,8 @@ import AllProducts from "../Components/AdminSection/AllProducts";
 import AllOrders from "../Components/AdminSection/AllOrders";
 import ImageUpload from "../Components/AdminSection/ImageUpload";
 import UploadProducts from "../Components/AdminSection/UploadProducts";
+import { Alert } from "@material-ui/lab";
+import Settings from "../Components/AdminSection/Settings";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,15 +87,31 @@ function AdminDashboard() {
     "Settings",
   ];
   const [currentTab, setCurrentTab] = useState(tabs[0]);
-  const [{ user, admin, notifs, adminDetails }, dispatch] = useStateValue();
+  const [
+    { user, admin, notifs, adminDetails, config },
+    dispatch,
+  ] = useStateValue();
 
   return (
     <div style={{ width: "100%", overflow: "hidden" }}>
+      <div id="admin-prompt">
+        {!config ? (
+          <Alert severity="info">
+            Please setup your site in settings &nbsp; &nbsp;
+            <Button variant="outlined" onClick={() => setCurrentTab(tabs[5])}>
+              Go to settings
+            </Button>
+          </Alert>
+        ) : (
+          <></>
+        )}
+      </div>
+
       <Grid container alignItems="flex-start">
         <Grid item xs={3} style={{ zIndex: 3 }}>
           <div className={classes.profileCard}>
             <Grid container alignItems="center" justify="center" spacing={2}>
-              <Avatar className={classes.avatar}>
+              <Avatar severity="info" className={classes.avatar}>
                 <Security color="primary" />
               </Avatar>
 
@@ -190,6 +210,7 @@ function AdminDashboard() {
               <ListItemIcon>
                 <SettingsApplications color="primary" />
               </ListItemIcon>
+
               <ListItemText primary="Settings" />
             </ListItem>
           </List>
@@ -222,7 +243,9 @@ function AdminDashboard() {
               <AllUsers />
             </div>
           ) : currentTab === tabs[5] ? (
-            <div></div>
+            <div>
+              <Settings />
+            </div>
           ) : (
             <div></div>
           )}

@@ -38,12 +38,6 @@ function ImageUpload() {
 
   const classes = useStyles();
 
-  /*  description: description,
-                imageUrl: url,
-                productName: productName,
-                price:productPrice,
-                discount:discount, */
-
   const [description, setDescription] = useState("");
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");

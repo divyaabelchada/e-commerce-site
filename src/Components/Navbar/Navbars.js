@@ -43,17 +43,11 @@ import {
   SearchBoxTwo,
 } from "./SearchBoxes";
 import Drawer from "./Drawer";
-import {
-  colorTheme,
-  showDrawer,
-  SearchBox,
-  actionType,
-  AppName,
-} from "../../App";
+
 import { grey } from "@material-ui/core/colors";
 import NavbarActions from "./NavbarComponents/NavbarActions";
 
-export function Navbar() {
+export function Navbar({ showDrawer, config, searchBox, actionType, options }) {
   return (
     <div>
       <div id="navbar" style={{ backgroundColor: "#fafafa" }}>
@@ -69,24 +63,24 @@ export function Navbar() {
           <Grid item md={2} style={{ textAlign: "left" }}>
             <Link to="/" className="links">
               {/* <h2>App Studio</h2> */}
-              <Typography variant="h6"> {AppName} </Typography>
+              <Typography variant="h6"> {config.appName} </Typography>
             </Link>
           </Grid>
           <Grid item xs={showDrawer ? 4 : 5}>
-            {SearchBox === 1 ? (
+            {searchBox === "1" ? (
               <SearchBoxOne />
-            ) : SearchBox === 2 ? (
+            ) : searchBox === "2" ? (
               <SearchBoxTwo />
-            ) : SearchBox === 3 ? (
+            ) : searchBox === "3" ? (
               <SearchBoxThree />
-            ) : SearchBox === 4 ? (
-              <SearchBoxFour />
-            ) : (
+            ) : searchBox === "4" ? (
               <SearchboxFive />
+            ) : (
+              <SearchBoxFour />
             )}
           </Grid>
           <Grid item md={5}>
-            <NavbarActions actionType={actionType} />{" "}
+            <NavbarActions actionType={actionType} options={options} />{" "}
           </Grid>
         </Grid>
       </div>

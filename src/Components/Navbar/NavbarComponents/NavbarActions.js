@@ -23,6 +23,7 @@ import {
   PersonAdd,
   PersonPin,
   AccountCircle,
+  EditLocation,
 } from "@material-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 
@@ -37,21 +38,21 @@ import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import { grey } from "@material-ui/core/colors";
 import { useStateValue } from "../../../StateProvider";
 
-function NavbarActions({ actionType }) {
+function NavbarActions({ actionType, options }) {
   const [{ user, userDetails, notifs }, dispatch] = useStateValue();
 
-  const options = {
-    location: true,
-    profile: true,
-    cart: true,
-    language: true,
-    notifications: true,
-    wishlist: true,
-  };
+  // const options = {
+  //   location: true,
+  //   profile: true,
+  //   cart: true,
+  //   language: true,
+  //   notifications: true,
+  //   wishlist: true,
+  // };
 
   return (
     <div style={{ paddingRight: "1rem" }}>
-      {actionType === 1 ? (
+      {actionType === "1" ? (
         <Grid container justify="flex-end" spacing={2}>
           {/* ===========location ========= */}
           {options.location ? (
@@ -220,8 +221,18 @@ function NavbarActions({ actionType }) {
             <></>
           )}
         </Grid>
-      ) : actionType === 2 ? (
+      ) : actionType === "2" ? (
         <Grid container alignItems="center" spacing={1} justify="flex-end">
+          {options.location ? (
+            <Grid item>
+              <IconButton>
+                <EditLocation color="primary" />
+              </IconButton>
+            </Grid>
+          ) : (
+            <></>
+          )}
+
           {options.wishlist ? (
             <Grid item>
               <NavLink
@@ -307,6 +318,16 @@ function NavbarActions({ actionType }) {
                   <AccountCircle color="primary" />
                 </IconButton>
               </NavLink>
+            </Grid>
+          ) : (
+            <></>
+          )}
+
+          {options.language ? (
+            <Grid item>
+              <IconButton>
+                <AccountCircle color="primary" />
+              </IconButton>
             </Grid>
           ) : (
             <></>

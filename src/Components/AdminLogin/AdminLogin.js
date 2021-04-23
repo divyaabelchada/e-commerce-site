@@ -18,15 +18,17 @@ import { useStateValue } from "../../StateProvider";
 import AdminDashboard from "../../Pages/AdminDashboard";
 import { CircularProgress } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { AppName } from "../../App";
+
 import { Security } from "@material-ui/icons";
 
 function Copyright() {
+  const [{ user, adminData, config }, dispatch] = useStateValue();
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" to="/">
-        {AppName}
+        {!config ? "" : config.appName}
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -66,7 +68,7 @@ export default function AdminLogin() {
 
   const [admin, setAdmin] = useState(false);
 
-  const [{ user, adminData }, dispatch] = useStateValue();
+  const [{ user, adminData, config }, dispatch] = useStateValue();
 
   const login = (event) => {
     event.preventDefault();

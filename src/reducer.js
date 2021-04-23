@@ -1,10 +1,5 @@
 export const initialState = {
-  config: {
-    appName: "App Studio",
-    contact: "7718962565",
-    email: "xyz@support.in",
-  },
-  appTheme: { primary: "#011684", secondary: "#DFE4FF" },
+  config: null,
   user: null,
   userDetails: null,
   adminDetails: null,
@@ -18,6 +13,7 @@ export const initialState = {
 
 export const actionTypes = {
   SET_USER: "SET_USER",
+  SET_CONFIG: "SET_CONFIG",
   SET_ADMIN: "SET_ADMIN",
   SET_CONFIG: "SET_CONFIG",
   SET_USER_DETAILS: "USER_DETAILS",
@@ -31,6 +27,11 @@ export const actionTypes = {
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
+    case actionTypes.SET_CONFIG:
+      return {
+        ...state,
+        config: action.config,
+      };
     case actionTypes.SET_USER:
       return {
         ...state,
