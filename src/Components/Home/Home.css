@@ -1,0 +1,47 @@
+#home .slick-slider {
+  display: flex;
+  align-items: center;
+}
+
+#home .slick-list {
+  padding: 1rem 0.2rem;
+}
+
+#center-img {
+  min-height: 30.3rem;
+  max-height: 30.3rem !important;
+}
+#img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  max-height: 15rem;
+  transition: transform 0.5s;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+#img-container img:hover {
+  transform: rotate(-7deg) scale(1.5);
+}
+
+#img-container p {
+  position: absolute;
+  bottom: 10px;
+  background-color: #25252594;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  color: azure;
+  text-transform: uppercase;
+}
+#img-container {
+  position: relative;
+  top: 0;
+  overflow: hidden;
+}
+
+#img-banner-grid {
+  max-height: 30rem;
+}

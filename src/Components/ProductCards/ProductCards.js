@@ -28,7 +28,7 @@ export function ProductCardone(props) {
 
   return (
     <div>
-      <Paper id="product-card-one">
+      <Paper id="product-card-one" elevation={2}>
         <Favorite id="heart-icon" />
         <Grid container alignItems="flex-start" justify="center">
           <Grid item xs={12}>
@@ -46,12 +46,7 @@ export function ProductCardone(props) {
           </Grid>
 
           <Grid item xs={6}>
-            <Button
-              fullWidth
-              color="secondary"
-              variant="outlined"
-              onClick={props.addToCart(1)}
-            >
+            <Button fullWidth color="secondary" variant="outlined">
               Add to cart
             </Button>
           </Grid>
@@ -97,12 +92,7 @@ export function ProductCardTwo(props) {
           </Grid>
 
           <Grid item xs={6}>
-            <Button
-              fullWidth
-              color="secondary"
-              variant="outlined"
-              onClick={props.addToCart(1)}
-            >
+            <Button fullWidth color="secondary" variant="outlined">
               Add to cart
             </Button>
           </Grid>
@@ -128,19 +118,18 @@ export function ProductCardThree(props) {
 
   return (
     <div>
-      <Card elevation={0} id="product-card-three">
+      <Card elevation={1} id="product-card-three">
         <Favorite id="heart-icon" />
         <Grid container alignItems="center" justify="center" spacing={2}>
           <Grid item xs={4}>
             <div id="image-div">
               <img src={props.imageUrl} id="product-img" />
             </div>
-            {/*  <Skeleton variant="rect" height={250} width={"100%"} /> */}
           </Grid>
           <Grid item xs={8}>
             <Chip
               icon={<LoyaltyOutlined />}
-              label={props.sale}
+              label={"flat " + props.discount + "% off"}
               color="primary"
               size="small"
             />
@@ -154,12 +143,7 @@ export function ProductCardThree(props) {
             <p style={{ minHeight: 50 }}> {props.description} </p>
             <Grid container>
               <Grid item xs={6}>
-                <Button
-                  fullWidth
-                  color="secondary"
-                  variant="outlined"
-                  onClick={props.addToCart(1)}
-                >
+                <Button fullWidth color="secondary" variant="outlined">
                   Add to cart
                 </Button>
               </Grid>

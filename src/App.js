@@ -44,6 +44,7 @@ import AdminDashboard from "./Pages/AdminDashboard";
 //underMaintainence img
 import underMaintainence from "./assets/underMaintainence.png";
 import { Alert } from "@material-ui/lab";
+import Home from "./Pages/Home";
 
 /* ========== setting up theme =========== */
 export const colorTheme = createMuiTheme({
@@ -328,7 +329,7 @@ export default function App() {
                         }}
                         searchBox={!config ? "2" : config.searchBox}
                       />
-                      Home
+                      <Home />
                     </div>
                   )}
                 </Route>

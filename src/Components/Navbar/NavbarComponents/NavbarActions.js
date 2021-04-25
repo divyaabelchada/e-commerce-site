@@ -338,7 +338,9 @@ function NavbarActions({ actionType, options }) {
         <Grid container justify="flex-end" spacing={3}>
           {options.location ? (
             <Grid item>
-              <Typography variant="body2">Location</Typography>
+              <Typography variant="body2" color="primary">
+                <b>Location</b>
+              </Typography>
             </Grid>
           ) : (
             <></>
@@ -352,7 +354,7 @@ function NavbarActions({ actionType, options }) {
                 activeClassName="current-link"
               >
                 <Typography variant="body2" color="primary">
-                  Notifications
+                  <b>Notifications</b>
                 </Typography>
               </NavLink>{" "}
             </Grid>
@@ -368,7 +370,7 @@ function NavbarActions({ actionType, options }) {
                 activeClassName="current-link"
               >
                 <Typography variant="body2" color="primary">
-                  Cart
+                  <b>Cart</b>
                 </Typography>
               </NavLink>
             </Grid>
@@ -384,7 +386,7 @@ function NavbarActions({ actionType, options }) {
                 activeClassName="current-link"
               >
                 <Typography variant="body2" color="primary">
-                  Wishlist
+                  <b>Wishlist </b>
                 </Typography>
               </NavLink>
             </Grid>
@@ -401,7 +403,7 @@ function NavbarActions({ actionType, options }) {
                   activeClassName="current-link"
                 >
                   <Typography variant="body2" color="primary">
-                    Login
+                    <b>Login</b>
                   </Typography>
                 </NavLink>
               ) : (
@@ -412,7 +414,7 @@ function NavbarActions({ actionType, options }) {
                 >
                   <Typography variant="body2" color="primary">
                     {" "}
-                    {!userDetails ? "Profile" : userDetails.fName}
+                    <b>{!userDetails ? "Profile" : userDetails.fName}</b>
                   </Typography>
                 </NavLink>
               )}
