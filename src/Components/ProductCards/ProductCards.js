@@ -45,12 +45,12 @@ export function ProductCardone(props) {
             <Typography> {props.productName}</Typography>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Button fullWidth color="secondary" variant="outlined">
               Add to cart
             </Button>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <p style={{ textAlign: "right" }}>
               {" "}
               <big>
@@ -91,12 +91,12 @@ export function ProductCardTwo(props) {
             <Typography> {props.productName}</Typography>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Button fullWidth color="secondary" variant="outlined">
               Add to cart
             </Button>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <p style={{ textAlign: "right" }}>
               {" "}
               <big>

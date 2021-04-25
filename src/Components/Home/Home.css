@@ -23,10 +23,11 @@
 }
 
 #img-container img:hover {
-  transform: rotate(-7deg) scale(1.5);
+  transform: rotate(-7deg) scale(1.3);
 }
 
 #img-container p {
+  padding: 0.5rem;
   position: absolute;
   bottom: 10px;
   background-color: #25252594;

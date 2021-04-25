@@ -45,6 +45,7 @@ import AdminDashboard from "./Pages/AdminDashboard";
 import underMaintainence from "./assets/underMaintainence.png";
 import { Alert } from "@material-ui/lab";
 import Home from "./Pages/Home";
+import Products from "./Pages/Products";
 
 /* ========== setting up theme =========== */
 export const colorTheme = createMuiTheme({
@@ -185,6 +186,40 @@ export default function App() {
                 <Route path="/some-path">
                   <div>default</div>
                 </Route>
+
+                <Route path="/user-wishlist">
+                  <Navbar
+                    actionType={!config ? "1" : config.actionType}
+                    options={
+                      !config
+                        ? {
+                            location: false,
+                            cart: true,
+                            profile: true,
+                            wishlist: false,
+                            language: false,
+                            notifications: false,
+                          }
+                        : config.options
+                    }
+                    showDrawer={!config ? false : config.showDrawer}
+                    config={{
+                      appName: !config ? "App Studio" : config.appName,
+                      email: !config ? "" : config.email,
+                      contact: !config ? "" : config.contact,
+                    }}
+                    searchBox={!config ? "2" : config.searchBox}
+                  />
+                  {!user ? (
+                    <div>login</div>
+                  ) : (
+                    <div>
+                      {" "}
+                      <Products />
+                    </div>
+                  )}
+                </Route>
+
                 <Route path="/user-signup">
                   <Navbar
                     actionType={!config ? "1" : config.actionType}
