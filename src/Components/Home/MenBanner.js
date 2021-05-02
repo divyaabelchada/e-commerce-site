@@ -1,35 +1,10 @@
 import { Grid } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const imgs = [
-  {
-    img:
-      "https://image.freepik.com/free-photo/portrait-handsome-smiling-stylish-young-man-model-dressed-blue-shirt-clothes-fashion-man-posing_158538-4976.jpg",
-    caption: "Jackets",
-  },
-  {
-    img:
-      "https://image.freepik.com/free-photo/bohemian-man-with-his-arms-crossed_1368-3542.jpg",
-    caption: "Classy",
-  },
-  {
-    img:
-      "https://image.freepik.com/free-photo/caucasian-handsome-man-posing-with-arms-hip-smiling-isolated-purple-wall_1368-89876.jpg",
-    caption: "DENIM",
-  },
-  {
-    img:
-      "https://image.freepik.com/free-photo/young-blonde-man-with-suitcase-sitting-floor-making-guitar-gesture_1368-171086.jpg",
-    caption: "travel",
-  },
-  {
-    img:
-      "https://image.freepik.com/free-photo/young-man-isolated-white-background-listening-music_1368-174565.jpg",
-    caption: "Casual",
-  },
-];
+//firebase
+import { db, auth, provider } from "../../firebase";
 
-function MenBanner() {
+function MenBanner({ imgs }) {
   return (
     <div>
       <Grid container id="img-banner-grid">

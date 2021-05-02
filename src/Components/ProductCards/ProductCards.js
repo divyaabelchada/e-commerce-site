@@ -46,7 +46,7 @@ export function ProductCardone(props) {
           </Grid>
 
           <Grid item xs={7}>
-            <Button fullWidth color="secondary" variant="outlined">
+            <Button fullWidth color="primary" variant="outlined">
               Add to cart
             </Button>
           </Grid>
@@ -92,7 +92,7 @@ export function ProductCardTwo(props) {
           </Grid>
 
           <Grid item xs={7}>
-            <Button fullWidth color="secondary" variant="outlined">
+            <Button fullWidth color="primary" variant="outlined">
               Add to cart
             </Button>
           </Grid>
@@ -143,7 +143,7 @@ export function ProductCardThree(props) {
             <p style={{ minHeight: 50 }}> {props.description} </p>
             <Grid container>
               <Grid item xs={6}>
-                <Button fullWidth color="secondary" variant="outlined">
+                <Button fullWidth color="primary" variant="outlined">
                   Add to cart
                 </Button>
               </Grid>
