@@ -43,6 +43,7 @@ function Settings() {
           wishlist: false,
           language: false,
           notifications: false,
+          products: false,
         }
       : config.options
   );
@@ -281,6 +282,19 @@ function Settings() {
                       />
                     }
                     label="Wishlist"
+                  />
+                </Grid>
+                <Grid item>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={navbarActions.products}
+                        onChange={handleChange}
+                        name="products"
+                      />
+                    }
+                    label="Products"
                   />
                 </Grid>
                 <Grid item>

@@ -47,38 +47,14 @@ import { Alert } from "@material-ui/lab";
 import Home from "./Pages/Home";
 import Products from "./Pages/Products";
 
-/* ========== setting up theme =========== */
-export const colorTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#011684",
-    },
-    secondary: {
-      main: "#DFE4FF",
-    },
-  },
-  typography: {
-    /* subtitle1: {
-      fontSize: 12,
-    }, */
-    body2: {
-      // fontWeight: "bold",
-    },
-    h6: {
-      fontWeight: "bold",
-    },
-    /*  button: {
-      fontStyle: "italic",
-    }, */
-  },
-});
-
 export const SearchBox = 3;
 export const showDrawer = true;
 export const actionType = 3;
 export const AppName = "App Studio";
 
 export default function App() {
+  /* ========== setting up theme =========== */
+
   /* const [navbar, setNavbar] = useState(2); */
   const [{ user, admin, notifs, config }, dispatch] = useStateValue();
 
@@ -109,6 +85,31 @@ export default function App() {
       setLoading(false);
     }, 2000);
   }, []);
+
+  const colorTheme = createMuiTheme({
+    palette: {
+      primary: {
+        main: !config ? "#000" : config.primary,
+      },
+      secondary: {
+        main: !config ? "#fafafa" : config.secondary,
+      },
+    },
+    typography: {
+      /* subtitle1: {
+      fontSize: 12,
+    }, */
+      body2: {
+        // fontWeight: "bold",
+      },
+      h6: {
+        fontWeight: "bold",
+      },
+      /*  button: {
+      fontStyle: "italic",
+    }, */
+    },
+  });
 
   const [navbar, setNavbar] = useState(2);
 
@@ -143,10 +144,16 @@ export default function App() {
             message={notifs.msg}
           />
           <Container maxWidth="xl">
-            <NavLink to="/" className="links" activeClassName="header-links">
-              <small>Home</small>
-            </NavLink>
             <Grid container alignItems="center" justify="flex-end" spacing={2}>
+              <Grid item>
+                <NavLink
+                  to="/"
+                  className="links"
+                  activeClassName="header-links"
+                >
+                  <small>Home</small>
+                </NavLink>
+              </Grid>
               <Grid item>
                 <NavLink
                   to={!admin ? "/admin-login" : "/admin-dashboard"}

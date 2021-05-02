@@ -24,6 +24,7 @@ import {
   PersonPin,
   AccountCircle,
   EditLocation,
+  Store,
 } from "@material-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 
@@ -113,6 +114,38 @@ function NavbarActions({ actionType, options }) {
             <></>
           )}
           {/* ===========wishlist ========= */}
+
+          {/* ====== products ============== */}
+
+          {options.products ? (
+            <Grid item>
+              <Badge
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                overlap="circle"
+                badgeContent={0}
+                color="default"
+              >
+                <NavLink
+                  to="/all-products"
+                  activeStyle={{
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 0px 5px #b0bec5",
+                    borderRadius: "50%",
+                  }}
+                >
+                  <Avatar style={{ backgroundColor: "#fff" }}>
+                    <Store color="primary" />
+                  </Avatar>
+                </NavLink>
+              </Badge>
+            </Grid>
+          ) : (
+            <></>
+          )}
+          {/* ======= //end products ======== */}
 
           {/* =========== notifications ========= */}
           {options.notifications ? (
@@ -244,6 +277,33 @@ function NavbarActions({ actionType, options }) {
               >
                 <IconButton>
                   <Favorite color="primary" />
+                </IconButton>
+              </NavLink>
+            </Grid>
+          ) : (
+            <></>
+          )}
+
+          {options.products ? (
+            <Grid item>
+              <NavLink
+                to="/all-products"
+                activeStyle={{
+                  borderBottom: "2px solid grey",
+                  paddingBottom: "1rem",
+                }}
+              >
+                <IconButton>
+                  <Badge
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    badgeContent={1}
+                    color="default"
+                  >
+                    <Store color="primary" />
+                  </Badge>
                 </IconButton>
               </NavLink>
             </Grid>
@@ -387,6 +447,21 @@ function NavbarActions({ actionType, options }) {
               >
                 <Typography variant="body2" color="primary">
                   <b>Wishlist </b>
+                </Typography>
+              </NavLink>
+            </Grid>
+          ) : (
+            <></>
+          )}
+          {options.products ? (
+            <Grid item>
+              <NavLink
+                className="links"
+                to="/all-products"
+                activeClassName="current-link"
+              >
+                <Typography variant="body2" color="primary">
+                  <b>Products </b>
                 </Typography>
               </NavLink>
             </Grid>
