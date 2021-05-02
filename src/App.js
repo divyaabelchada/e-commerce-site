@@ -143,6 +143,9 @@ export default function App() {
             message={notifs.msg}
           />
           <Container maxWidth="xl">
+            <NavLink to="/" className="links" activeClassName="header-links">
+              <small>Home</small>
+            </NavLink>
             <Grid container alignItems="center" justify="flex-end" spacing={2}>
               <Grid item>
                 <NavLink
