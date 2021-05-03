@@ -25,7 +25,23 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+//redux
+import { useStateValue } from "../../StateProvider";
+import { actionTypes } from "../../reducer";
+//routing
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  NavLink,
+} from "react-router-dom";
+import CustomProductCardTwo from "../ProductCards/CustomProductCardTwo";
+import CustomProductCard from "../ProductCards/CustomProductCard";
+
 function ProductsList() {
+  const [{ user, admin, notifs, config }, dispatch] = useStateValue();
+
   const [products, setProducts] = useState(null);
 
   const [loading, setLoading] = useState(false);
@@ -64,13 +80,25 @@ function ProductsList() {
                   <Grid container spacing={1} justify="center">
                     {products.map(({ id, product }) => (
                       <Grid item xs={3}>
-                        <ProductCardone
-                          imageUrl={product.imageUrl}
-                          productName={product.productName}
-                          price={product.price}
-                          discount={product.discount}
-                          product={product}
-                        />
+                        {config && config.card === "cardOne" ? (
+                          <CustomProductCard
+                            id={id}
+                            imageUrl={product.imageUrl}
+                            productName={product.productName}
+                            price={product.price}
+                            discount={product.discount}
+                            product={product}
+                          />
+                        ) : (
+                          <CustomProductCardTwo
+                            id={id}
+                            imageUrl={product.imageUrl}
+                            productName={product.productName}
+                            price={product.price}
+                            discount={product.discount}
+                            product={product}
+                          />
+                        )}
                       </Grid>
                     ))}
                   </Grid>

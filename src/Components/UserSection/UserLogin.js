@@ -75,6 +75,13 @@ export default function UserLogin() {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         setAlert({ value: false, msg: "" });
+        if (userData.value) {
+          db.collection("users")
+            .doc(result.user.uid)
+            .set(userData.data)
+            .then()
+            .catch((error) => setAlert({ value: true, msg: error.message }));
+        }
         //console.log(result.user.uid);
         db.collection("users")
           .doc(result.user.uid)

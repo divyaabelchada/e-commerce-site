@@ -88,6 +88,44 @@ export default function App() {
     }, 2000);
   }, []);
 
+  //for cart
+
+  const [products, setProducts] = useState([]);
+  const [prices, setPrices] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  /* setting up produccts */
+
+  useEffect(() => {
+    if (user) {
+      db.collection("users")
+        .doc(user.uid)
+        .collection("cart")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+          setProducts(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              product: doc.data(),
+            }))
+          );
+          setPrices(snapshot.docs.map((doc) => Number(doc.data().price)));
+        });
+    } else {
+    }
+  }, [user, products]);
+  /* end products */
+
+  useEffect(() => {
+    if (products.length > 0) {
+      setTotal(
+        products
+          .map(({ id, product }) => Number(product.price))
+          .reduce((a, b) => a + b)
+      );
+    }
+  }, [total, products]);
+
   const colorTheme = createMuiTheme({
     palette: {
       primary: {
@@ -226,6 +264,34 @@ export default function App() {
                   <div>default</div>
                 </Route>
 
+                <Route path="/all-products">
+                  <Navbar
+                    cart={!user ? [] : products}
+                    actionType={!config ? "1" : config.actionType}
+                    options={
+                      !config
+                        ? {
+                            location: false,
+                            cart: true,
+                            profile: true,
+                            wishlist: false,
+                            language: false,
+                            notifications: false,
+                          }
+                        : config.options
+                    }
+                    showDrawer={!config ? false : config.showDrawer}
+                    config={{
+                      appName: !config ? "App Studio" : config.appName,
+                      email: !config ? "" : config.email,
+                      contact: !config ? "" : config.contact,
+                    }}
+                    searchBox={!config ? "2" : config.searchBox}
+                  />
+
+                  <Products />
+                </Route>
+
                 <Route path="/user-wishlist">
                   <Navbar
                     actionType={!config ? "1" : config.actionType}
@@ -261,6 +327,7 @@ export default function App() {
 
                 <Route path="/user-signup">
                   <Navbar
+                    cart={!user ? [] : products}
                     actionType={!config ? "1" : config.actionType}
                     options={
                       !config
@@ -286,6 +353,7 @@ export default function App() {
                 </Route>
                 <Route path="/user-login">
                   <Navbar
+                    cart={!user ? [] : products}
                     actionType={!config ? "1" : config.actionType}
                     options={
                       !config
@@ -311,6 +379,7 @@ export default function App() {
                 </Route>
                 <Route path="/user-profile">
                   <Navbar
+                    cart={!user ? [] : products}
                     actionType={!config ? "1" : config.actionType}
                     options={
                       !config
@@ -382,6 +451,7 @@ export default function App() {
                   ) : (
                     <div>
                       <Navbar
+                        cart={!user ? [] : products}
                         actionType={!config ? "1" : config.actionType}
                         options={
                           !config

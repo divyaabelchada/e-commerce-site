@@ -326,7 +326,14 @@ function UploadProducts() {
               </Grid>
             </Grid>
             <Grid item xs={6}>
-              <img src={imageToShow} />
+              <img
+                src={imageToShow}
+                style={{
+                  width: "100%",
+                  objectFit: "contain",
+                  maxHeight: "15rem",
+                }}
+              />
             </Grid>
             <Grid item xs={9}>
               <div

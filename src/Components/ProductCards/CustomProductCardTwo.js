@@ -36,13 +36,11 @@ function CustomProductCardTwo(props) {
         .collection("cart")
         .add({
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          description: props.description,
           imageUrl: props.imageUrl,
           productName: props.productName,
-          price: props.discountPrice,
-          category: props.category,
+          price: discountPrice,
           id: props.id,
-          qty: qty > 0 ? qty : 1,
+          qty: 1,
         })
         .then(() => {
           //alert("Product Added Successfully!");

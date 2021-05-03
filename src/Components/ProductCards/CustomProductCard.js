@@ -34,11 +34,9 @@ function CustomProductCard(props) {
         .collection("cart")
         .add({
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          description: props.description,
           imageUrl: props.imageUrl,
           productName: props.productName,
-          price: props.discountPrice,
-          category: props.category,
+          price: discountPrice,
           id: props.id,
           qty: 1,
         })

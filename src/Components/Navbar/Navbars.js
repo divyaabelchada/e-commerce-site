@@ -47,7 +47,14 @@ import Drawer from "./Drawer";
 import { grey } from "@material-ui/core/colors";
 import NavbarActions from "./NavbarComponents/NavbarActions";
 
-export function Navbar({ showDrawer, config, searchBox, actionType, options }) {
+export function Navbar({
+  cart,
+  showDrawer,
+  config,
+  searchBox,
+  actionType,
+  options,
+}) {
   return (
     <div>
       <div id="navbar" style={{ backgroundColor: "#fafafa" }}>
@@ -80,7 +87,11 @@ export function Navbar({ showDrawer, config, searchBox, actionType, options }) {
             )}
           </Grid>
           <Grid item md={5}>
-            <NavbarActions actionType={actionType} options={options} />{" "}
+            <NavbarActions
+              cart={cart}
+              actionType={actionType}
+              options={options}
+            />{" "}
           </Grid>
         </Grid>
       </div>

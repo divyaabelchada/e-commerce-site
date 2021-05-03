@@ -106,8 +106,8 @@ function Settings() {
         .doc(admin.uid)
         .set({
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          primary: secondary,
-          secondary: primary,
+          primary: primary,
+          secondary: secondary,
           appName: appName,
           email: email,
           contact: contact,
@@ -123,8 +123,8 @@ function Settings() {
       dispatch({
         type: actionTypes.SET_CONFIG,
         config: {
-          primary: secondary,
-          secondary: primary,
+          primary: primary,
+          secondary: secondary,
           appName: appName,
           email: email,
           contact: contact,
@@ -149,7 +149,9 @@ function Settings() {
   return (
     <div>
       {loading ? (
-        <Card style={{ textAlign: "center", margin: "5rem" }}>
+        <Card
+          style={{ textAlign: "center", margin: "5rem", minHeight: "70vh" }}
+        >
           <CircularProgress />
         </Card>
       ) : (
@@ -488,7 +490,7 @@ function Settings() {
               <Divider />
               <p>
                 <br />
-                <b>Add styling</b>
+                <b>Add styling to buttons</b>
               </p>
               <br />
               <Grid container alignItems="center" spacing={1}>

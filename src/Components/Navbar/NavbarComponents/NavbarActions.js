@@ -39,7 +39,7 @@ import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import { grey } from "@material-ui/core/colors";
 import { useStateValue } from "../../../StateProvider";
 
-function NavbarActions({ actionType, options }) {
+function NavbarActions({ cart, actionType, options }) {
   const [{ user, userDetails, notifs }, dispatch] = useStateValue();
 
   // const options = {
@@ -187,7 +187,7 @@ function NavbarActions({ actionType, options }) {
                   horizontal: "right",
                 }}
                 overlap="circle"
-                badgeContent={1}
+                badgeContent={cart.length}
                 color="default"
               >
                 <NavLink
@@ -294,16 +294,7 @@ function NavbarActions({ actionType, options }) {
                 }}
               >
                 <IconButton>
-                  <Badge
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    badgeContent={1}
-                    color="default"
-                  >
-                    <Store color="primary" />
-                  </Badge>
+                  <Store color="primary" />
                 </IconButton>
               </NavLink>
             </Grid>
@@ -326,7 +317,7 @@ function NavbarActions({ actionType, options }) {
                       vertical: "top",
                       horizontal: "right",
                     }}
-                    badgeContent={1}
+                    badgeContent={cart.length}
                     color="default"
                   >
                     <ShoppingCart color="primary" />
