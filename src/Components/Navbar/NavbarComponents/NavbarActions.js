@@ -187,7 +187,7 @@ function NavbarActions({ cart, actionType, options }) {
                   horizontal: "right",
                 }}
                 overlap="circle"
-                badgeContent={cart.length}
+                badgeContent={0}
                 color="default"
               >
                 <NavLink
@@ -317,7 +317,7 @@ function NavbarActions({ cart, actionType, options }) {
                       vertical: "top",
                       horizontal: "right",
                     }}
-                    badgeContent={cart.length}
+                    badgeContent={0}
                     color="default"
                   >
                     <ShoppingCart color="primary" />
@@ -344,7 +344,7 @@ function NavbarActions({ cart, actionType, options }) {
                       vertical: "top",
                       horizontal: "right",
                     }}
-                    badgeContent={1}
+                    badgeContent={0}
                     color="default"
                   >
                     <Notifications color="primary" />
