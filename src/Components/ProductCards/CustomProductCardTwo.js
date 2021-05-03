@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
+import { Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import { Favorite, FavoriteBorderOutlined } from "@material-ui/icons";
 import React, { useState } from "react";
 
@@ -19,11 +19,13 @@ import {
   NavLink,
 } from "react-router-dom";
 
-function CustomProductCard(props) {
+function CustomProductCardTwo(props) {
   const [{ user, notifs }, dispatch] = useStateValue();
 
   const discountPrice =
     Number(props.price) - Number(props.price / 100) * Number(props.discount);
+
+  const [qty, setQty] = useState("1");
 
   const [wishlist, setWishlist] = useState(props.wishlist);
 
@@ -40,7 +42,7 @@ function CustomProductCard(props) {
           price: props.discountPrice,
           category: props.category,
           id: props.id,
-          qty: 1,
+          qty: qty > 0 ? qty : 1,
         })
         .then(() => {
           //alert("Product Added Successfully!");
@@ -89,23 +91,27 @@ function CustomProductCard(props) {
             </div>
           </Grid>
           <Grid item xs={12} style={{ height: 70 }}>
-            <Typography> {props.productName}</Typography>
+            <Typography>{props.productName}</Typography>
           </Grid>
 
           <Grid item xs={12}>
-            <Grid container alignItems="center">
-              <Grid item xs={7}>
-                <Button
+            <Grid
+              container
+              alignItems="center"
+              justify="space-between"
+              spacing={1}
+            >
+              <Grid item xs={4} id="qty">
+                <TextField
                   fullWidth
-                  color="primary"
-                  style={props.style}
-                  variant={props.variant}
-                  onClick={() => addToCart()}
-                >
-                  Add to cart
-                </Button>
+                  type="number"
+                  variant="outlined"
+                  placeholder="qty"
+                  value={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                />
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={8}>
                 <p style={{ textAlign: "right" }}>
                   <big>
                     <b> Rs {discountPrice}</b>&nbsp;
@@ -117,10 +123,21 @@ function CustomProductCard(props) {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={12} style={{ marginTop: "0.2rem" }}>
+            <Button
+              fullWidth
+              color="primary"
+              style={props.style}
+              variant={props.variant}
+              onClick={() => addToCart()}
+            >
+              Add to cart
+            </Button>
+          </Grid>
         </Grid>
       </Paper>
     </div>
   );
 }
 
-export default CustomProductCard;
+export default CustomProductCardTwo;

@@ -2,6 +2,7 @@ import {
   Button,
   Card,
   CircularProgress,
+  Container,
   Divider,
   Grid,
   Paper,
@@ -26,6 +27,7 @@ import { useStateValue } from "../../StateProvider";
 import { storage, db } from "../../firebase";
 import firebase from "firebase";
 import CustomProductCard from "../ProductCards/CustomProductCard";
+import CustomProductCardTwo from "../ProductCards/CustomProductCardTwo";
 
 function Settings() {
   const [{ user, adminData, admin, config }, dispatch] = useStateValue();
@@ -67,6 +69,30 @@ function Settings() {
     });
   };
 
+  //product card
+  //card
+  const [productCard, setProductCard] = useState(
+    !config ? "cardOne" : config.card
+  );
+  //variant
+  const [variant, setVariant] = useState(!config ? "outlined" : config.variant);
+  //styling
+  const [style, setStyle] = useState(
+    !config
+      ? {
+          borderRadius: `${5}`,
+          color: `${"#000000"}`,
+        }
+      : config.productCardStyle
+  );
+
+  //color
+
+  const [primary, setPrimary] = useState(!config ? "#000" : config.primary);
+  const [secondary, setSecondary] = useState(
+    !config ? "#fafafa" : config.secondary
+  );
+
   console.log(navbarActions);
   console.log(actionType);
 
@@ -80,6 +106,8 @@ function Settings() {
         .doc(admin.uid)
         .set({
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          primary: secondary,
+          secondary: primary,
           appName: appName,
           email: email,
           contact: contact,
@@ -87,11 +115,16 @@ function Settings() {
           showDrawer: showDrawer,
           actionType: actionType,
           options: navbarActions,
+          variant: variant,
+          productCardStyle: style,
+          card: productCard,
         })
         .catch((error) => alert(error.message));
       dispatch({
         type: actionTypes.SET_CONFIG,
         config: {
+          primary: secondary,
+          secondary: primary,
           appName: appName,
           email: email,
           contact: contact,
@@ -99,6 +132,9 @@ function Settings() {
           showDrawer: showDrawer,
           actionType: actionType,
           options: navbarActions,
+          variant: variant,
+          productCardStyle: style,
+          card: productCard,
         },
       });
       setSuccess(true);
@@ -109,13 +145,6 @@ function Settings() {
       alert("please select all mandatory fields");
     }
   };
-
-  //variant
-  const [variant, setVariant] = useState("outlined");
-  const [style, setStyle] = useState({
-    borderRadius: `${5}`,
-    color: `${"#000"}`,
-  });
 
   return (
     <div>
@@ -360,115 +389,258 @@ function Settings() {
               />
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={7}>
             <Paper style={{ padding: "1.5rem", paddingTop: "0.8rem" }}>
               <h3> Product Card Preview </h3>
-              <CustomProductCard
-                productName="Girls Pink Striped Tasselled Backpack"
-                discount={57}
-                price={760}
-                imageUrl="https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/productimage/2021/2/26/32bc12f2-ebb5-4489-831b-d377704aff911614327543431-2.jpg"
-                variant={variant}
-                style={style}
-              />
+              <Grid container alignItems="center" spacing={2}>
+                <Grid
+                  item
+                  xs={6}
+                  style={
+                    productCard === "cardOne"
+                      ? { border: "2px solid #000" }
+                      : {}
+                  }
+                  onClick={() => setProductCard("cardOne")}
+                >
+                  <CustomProductCard
+                    productName="Girls Pink Striped Tasselled Backpack"
+                    discount={57}
+                    price={760}
+                    imageUrl="https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/productimage/2021/2/26/32bc12f2-ebb5-4489-831b-d377704aff911614327543431-2.jpg"
+                    variant={variant}
+                    style={style}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={6}
+                  style={
+                    productCard === "cardTwo"
+                      ? { border: "2px solid #000" }
+                      : {}
+                  }
+                  onClick={() => setProductCard("cardTwo")}
+                >
+                  <CustomProductCardTwo
+                    productName="Girls Pink Striped Tasselled Backpack"
+                    discount={57}
+                    price={760}
+                    imageUrl="https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/productimage/2021/2/26/32bc12f2-ebb5-4489-831b-d377704aff911614327543431-2.jpg"
+                    variant={variant}
+                    style={style}
+                    wishlist={true}
+                  />
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={5}>
             <Paper style={{ padding: "1.5rem", paddingTop: "0.8rem" }}>
               <h3>Customise product Card</h3>
-              <p>Choose button type</p>
-              <Radio
-                color="primary"
-                checked={variant === "outlined"}
-                onChange={(e) => setVariant(e.target.value)}
-                value="outlined"
-              />{" "}
-              Outlined
-              <Radio
-                color="primary"
-                checked={variant === "contained"}
-                onChange={(e) => setVariant(e.target.value)}
-                value="contained"
-                label="Filled button"
-              />
-              Filled Button
-              <p>Add styling</p>
+
+              <Divider />
+              <div style={{ paddingBottom: "0.7rem", paddingTop: "0.8rem" }}>
+                <Radio
+                  color="primary"
+                  checked={productCard === "cardOne"}
+                  onChange={(e) => setProductCard(e.target.value)}
+                  value="cardOne"
+                />
+                Fixed quantity
+                <Radio
+                  color="primary"
+                  checked={productCard === "cardTwo"}
+                  onChange={(e) => setProductCard(e.target.value)}
+                  value="cardTwo"
+                />
+                Custom quantity
+              </div>
+              <Divider />
+              <p>
+                <br />
+                <b>Choose button type</b>
+                <br />
+              </p>
+              <div style={{ paddingBottom: "1rem" }}>
+                <Radio
+                  color="primary"
+                  checked={variant === "outlined"}
+                  onChange={(e) => setVariant(e.target.value)}
+                  value="outlined"
+                />{" "}
+                Outlined
+                <Radio
+                  color="primary"
+                  checked={variant === "contained"}
+                  onChange={(e) => setVariant(e.target.value)}
+                  value="contained"
+                />
+                Filled Button
+                <Radio
+                  color="primary"
+                  checked={variant === "text"}
+                  onChange={(e) => setVariant(e.target.value)}
+                  value="text"
+                />
+                No outline
+              </div>
+              <Divider />
+              <p>
+                <br />
+                <b>Add styling</b>
+              </p>
               <br />
-              border radius
-              <TextField
-                fullWidth
-                variant="outlined"
-                multiline
-                placeholder="Border Radius"
-                value={style.radius}
-                onChange={(e) =>
-                  setStyle((history) => {
-                    return { ...history, borderRadius: `${e.target.value}px` };
-                  })
-                }
-              />
-              <br />
-              color
-              <TextField
-                fullWidth
-                variant="outlined"
-                multiline
-                placeholder="Border Radius"
-                value={style.color}
-                onChange={(e) =>
-                  setStyle((history) => {
-                    return { ...history, color: `${e.target.value}` };
-                  })
-                }
-              />
-              background Color
-              <TextField
-                fullWidth
-                variant="outlined"
-                multiline
-                placeholder="Background Color"
-                value={style.backgroundColor}
-                onChange={(e) =>
-                  setStyle((history) => {
-                    return { ...history, backgroundColor: `${e.target.value}` };
-                  })
-                }
-              />
+              <Grid container alignItems="center" spacing={1}>
+                <Grid item xs={4}>
+                  Border Radius:
+                </Grid>
+                <Grid item xs={8}>
+                  <TextField
+                    fullWidth
+                    variant="outlined"
+                    multiline
+                    type="number"
+                    placeholder="calculated in px"
+                    value={style.borderRadius}
+                    onChange={(e) =>
+                      setStyle((history) => {
+                        return {
+                          ...history,
+                          borderRadius: `${e.target.value}`,
+                        };
+                      })
+                    }
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  Font Color:
+                </Grid>
+                <Grid item xs={8}>
+                  <TextField
+                    fullWidth
+                    variant="outlined"
+                    multiline
+                    placeholder="Add hex code or rgb values"
+                    value={style.color}
+                    onChange={(e) =>
+                      setStyle((history) => {
+                        return { ...history, color: `${e.target.value}` };
+                      })
+                    }
+                  />
+                </Grid>
+                <Grid item xs={4}>
+                  Background Color:
+                </Grid>
+                <Grid item xs={8}>
+                  <TextField
+                    fullWidth
+                    variant="outlined"
+                    multiline
+                    placeholder="Add hex code or rgb values"
+                    value={style.backgroundColor}
+                    onChange={(e) =>
+                      setStyle((history) => {
+                        return {
+                          ...history,
+                          backgroundColor: `${e.target.value}`,
+                        };
+                      })
+                    }
+                  />
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+
+          {/* colors */}
+
+          <Grid item xs={6}>
+            <Paper style={{ padding: "1.5rem", textAlign: "center" }}>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item xs={5}>
+                  <TextField
+                    fullWidth
+                    label="primary color"
+                    placeholder="primary color in hex"
+                    value={primary}
+                    onChange={(e) => {
+                      setPrimary(e.target.value);
+                    }}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  <div
+                    style={{
+                      height: "2rem",
+                      width: "2rem",
+                      backgroundColor: `${primary}`,
+                    }}
+                  ></div>
+                </Grid>
+
+                <Grid item xs={5}>
+                  <TextField
+                    fullWidth
+                    label="secondary color"
+                    placeholder="secondary color in hex"
+                    value={secondary}
+                    onChange={(e) => {
+                      setSecondary(e.target.value);
+                    }}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  <div
+                    style={{
+                      height: "2rem",
+                      width: "2rem",
+                      backgroundColor: `${secondary}`,
+                    }}
+                  ></div>
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
 
           {/* save  button grid ========  donot touch ================ */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6}>
             <Paper style={{ padding: "1.5rem", textAlign: "center" }}>
-              {success ? (
-                <Button
-                  fullWidth
-                  color="primary"
-                  variant="contained"
-                  style={{ maxWidth: "70%" }}
-                >
-                  Update
-                </Button>
-              ) : (
-                <Grid container alignItems="center" spacing={2}>
-                  <Grid item xs={6}>
-                    <Button fullWidth variant="outlined">
-                      Cancel
-                    </Button>
-                  </Grid>
+              <Container maxWidth="xs">
+                {success ? (
+                  <Button
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                    style={{ maxWidth: "70%" }}
+                    onClick={() => saveConfig()}
+                  >
+                    Update
+                  </Button>
+                ) : (
+                  <Grid container alignItems="center" spacing={2}>
+                    <Grid item xs={6}>
+                      <Button fullWidth variant="outlined">
+                        Cancel
+                      </Button>
+                    </Grid>
 
-                  <Grid item xs={6}>
-                    <Button
-                      fullWidth
-                      color="primary"
-                      variant="contained"
-                      onClick={() => saveConfig()}
-                    >
-                      Save
-                    </Button>
+                    <Grid item xs={6}>
+                      <Button
+                        fullWidth
+                        color="primary"
+                        variant="contained"
+                        onClick={() => saveConfig()}
+                      >
+                        Save
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
-              )}
+                )}{" "}
+              </Container>
             </Paper>
           </Grid>
         </Grid>

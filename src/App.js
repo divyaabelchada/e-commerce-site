@@ -23,6 +23,7 @@ import {
   Grid,
   Snackbar,
   CircularProgress,
+  IconButton,
 } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Footer from "./Components/Footer/Footer";
@@ -46,6 +47,7 @@ import underMaintainence from "./assets/underMaintainence.png";
 import { Alert } from "@material-ui/lab";
 import Home from "./Pages/Home";
 import Products from "./Pages/Products";
+import { Close } from "@material-ui/icons";
 
 export const SearchBox = 3;
 export const showDrawer = true;
@@ -113,35 +115,62 @@ export default function App() {
 
   const [navbar, setNavbar] = useState(2);
 
-  const addToCart = (quantity) => {
-    if (quantity != 0) {
-      dispatch({
-        type: actionTypes.SET_NOTIFS,
-        notifs: {
-          value: true,
-          error: false,
-          msg: quantity + "Product added to cart",
-        },
-      });
-      setTimeout(() => {
-        dispatch({
-          type: actionTypes.SET_NOTIFS,
-          notifs: { value: false, error: false, msg: "Product added to cart" },
-        });
-      }, 2000);
-    }
-  };
-
   //console.log(window.location.href.toString().split(window.location.host)[1]);
+
+  //handle close for notifs
+
+  const handleClose = () => {
+    dispatch({
+      type: actionTypes.SET_NOTIFS,
+      notifs: { value: false, error: false, msg: "" },
+    });
+  };
 
   return (
     <ThemeProvider theme={colorTheme}>
       <Router>
         <div className="App">
           <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
             open={notifs.value}
             autoHideDuration={2000}
             message={notifs.msg}
+            action={
+              <div>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={() => handleClose()}
+                >
+                  <Close fontSize="small" />
+                </IconButton>
+              </div>
+            }
+          />
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            open={notifs.error}
+            autoHideDuration={2000}
+            message={notifs.msg}
+            action={
+              <div>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={() => handleClose()}
+                >
+                  <Close fontSize="small" />
+                </IconButton>
+              </div>
+            }
           />
           <Container maxWidth="xl">
             <Grid container alignItems="center" justify="flex-end" spacing={2}>
