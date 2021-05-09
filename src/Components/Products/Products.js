@@ -88,6 +88,8 @@ function ProductsList() {
                             price={product.price}
                             discount={product.discount}
                             product={product}
+                            variant={config.variant}
+                            style={config.style}
                           />
                         ) : (
                           <CustomProductCardTwo
@@ -97,6 +99,8 @@ function ProductsList() {
                             price={product.price}
                             discount={product.discount}
                             product={product}
+                            variant={config.variant}
+                            style={config.style}
                           />
                         )}
                       </Grid>

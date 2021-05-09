@@ -49,6 +49,8 @@ import Home from "./Pages/Home";
 import Products from "./Pages/Products";
 import { Close } from "@material-ui/icons";
 import Cart from "./Pages/Cart";
+import UserDashboard from "./Pages/UserDashboard";
+import SingleProduct from "./Pages/SingleProduct";
 
 export const SearchBox = 3;
 export const showDrawer = true;
@@ -227,6 +229,33 @@ export default function App() {
                   <div>default</div>
                 </Route>
 
+                <Route path="/search-product/:productId">
+                  <Navbar
+                    actionType={!config ? "1" : config.actionType}
+                    options={
+                      !config
+                        ? {
+                            location: false,
+                            cart: true,
+                            profile: true,
+                            wishlist: false,
+                            language: false,
+                            notifications: false,
+                          }
+                        : config.options
+                    }
+                    showDrawer={!config ? false : config.showDrawer}
+                    config={{
+                      appName: !config ? "App Studio" : config.appName,
+                      email: !config ? "" : config.email,
+                      contact: !config ? "" : config.contact,
+                    }}
+                    searchBox={!config ? "2" : config.searchBox}
+                  />
+
+                  <SingleProduct />
+                </Route>
+
                 <Route path="/all-products">
                   <Navbar
                     actionType={!config ? "1" : config.actionType}
@@ -385,7 +414,14 @@ export default function App() {
                     }}
                     searchBox={!config ? "2" : config.searchBox}
                   />
-                  {!user ? <div>login</div> : <div> user dashboard</div>}
+                  {!user ? (
+                    <div>login</div>
+                  ) : (
+                    <div>
+                      {" "}
+                      <UserDashboard />{" "}
+                    </div>
+                  )}
                 </Route>
                 <Route path="/admin-dashboard">
                   {!admin ? <div>login</div> : <AdminDashboard />}

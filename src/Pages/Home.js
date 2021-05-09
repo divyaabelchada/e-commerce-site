@@ -28,14 +28,15 @@ function Home() {
     <div id="home">
       <Banner />
       <br />
-      <WomenBanner />
+      {imgs.length > 0 ? <MenBanner imgs={imgs} /> : <></>}
+
       <br />
 
       <br />
       <ProductSlider />
       <br />
-      {imgs.length > 0 ? <MenBanner imgs={imgs} /> : <></>}
 
+      <WomenBanner />
       <br />
 
       <ProductSliderTwo />

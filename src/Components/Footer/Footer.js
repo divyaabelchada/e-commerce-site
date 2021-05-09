@@ -19,7 +19,23 @@ import {
   Twitter,
 } from "@material-ui/icons";
 
+//firebase
+import { db, auth, provider } from "../../firebase";
+//redux
+import { useStateValue } from "../../StateProvider";
+import { actionTypes } from "../../reducer";
+//routing
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  NavLink,
+} from "react-router-dom";
+
 function Footer() {
+  const [{ user, admin, notifs, config }, dispatch] = useStateValue();
+
   return (
     <div id="footer">
       <Grid
@@ -37,7 +53,7 @@ function Footer() {
           id="logo-section"
         >
           {/* logo and copyright */}
-          <h1>Logo</h1>
+          <h1>{!config ? "Name" : config.appName} </h1>
           <h3 style={{ color: "#7f7f7f" }}>
             COPYRIGHT © 2021 APRIL 1 <br />
             ALL RIGHTS RESERVED

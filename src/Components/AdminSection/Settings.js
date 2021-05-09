@@ -83,7 +83,7 @@ function Settings() {
           borderRadius: `${5}`,
           color: `${"#000000"}`,
         }
-      : config.productCardStyle
+      : config.style
   );
 
   //color
@@ -116,7 +116,7 @@ function Settings() {
           actionType: actionType,
           options: navbarActions,
           variant: variant,
-          productCardStyle: style,
+          style: style,
           card: productCard,
         })
         .catch((error) => alert(error.message));
@@ -133,7 +133,7 @@ function Settings() {
           actionType: actionType,
           options: navbarActions,
           variant: variant,
-          productCardStyle: style,
+          style: style,
           card: productCard,
         },
       });

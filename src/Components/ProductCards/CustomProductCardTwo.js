@@ -85,7 +85,9 @@ function CustomProductCardTwo(props) {
         <Grid container alignItems="flex-start" justify="center">
           <Grid item xs={12}>
             <div id="image-div">
-              <img src={props.imageUrl} id="product-img" />
+              <Link to={`/search-product/${props.id}`}>
+                <img src={props.imageUrl} id="product-img" />
+              </Link>
             </div>
           </Grid>
           <Grid item xs={12} style={{ height: 70 }}>

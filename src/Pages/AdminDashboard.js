@@ -86,7 +86,7 @@ function AdminDashboard() {
     "Users",
     "Settings",
   ];
-  const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const [currentTab, setCurrentTab] = useState(tabs[5]);
   const [
     { user, admin, notifs, adminDetails, config },
     dispatch,
